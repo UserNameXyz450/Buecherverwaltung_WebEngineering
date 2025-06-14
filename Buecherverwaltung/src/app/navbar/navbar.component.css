@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: lightsteelblue;
+  text-decoration: none;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  background-color: lightsteelblue;
+  height: 100%;
+  padding: 0 15px;
+  transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: rgba(141, 161, 221, 0.56);
+}
+
+.navbar li {
+  display: flex;
+  align-items: stretch;
+}
+
+ul.navbar {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  align-items: stretch;
+}
+
+#registerlogin {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}

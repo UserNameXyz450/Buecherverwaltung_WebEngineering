@@ -1,1 +1,42 @@
-<p>register works!</p>
+<form>
+
+  <label for="username"> Name</label>
+  <input required
+         autocomplete="on"
+         type="text"
+         id="username"
+         name="username"
+         size="45"
+         pattern=[0-9a-zA-Z]{4,10}
+         title="4 bis 10 Zeichen, keine Sonderzeichen, Zahlen 0 bis 9" />
+  <br>
+
+  <label for="displayname">Username</label>
+  <input
+    id="displayname"
+    type="text"
+    autocomplete="on"
+    pattern="^[a-zA-Z0-9\s]{4,30}$"
+    title="4 - 30 Zeichen, keine Sonderzeichen"
+    required />
+
+  <br>
+  <label for="profileDescription"> <abbr title="Information about yourself" >Description</abbr></label>
+  <input id="profileDescription" type="text" autocomplete="on" />
+  <br>
+  <label for="password" >Password </label>
+  <input required
+         autocomplete="on"
+         type="password"
+         id="password"
+         name="passwort"
+         size="45"
+         pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,12}$"
+         title="at least 12 characters, one number" />
+  <span class="validity"></span>
+  <p>Your password needs to consist out of 6 to 12 characters and at least one number</p>
+  <br>
+  <br>
+  <button id="registerButton" >Send!</button>
+
+</form>
