@@ -5,6 +5,18 @@ h1 {
   margin-bottom: 70px;
 }
 
+#topic-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 #book-entries {
   margin-left: 5%;
   margin-right: 5%;
@@ -16,4 +28,14 @@ h1 {
   background-color: rgba(211, 211, 211, 0.44);
   padding: 20px;
   border-radius: 8px;
+}
+
+#book-entries > div {
+  width: 75%;
+  background-color: rgba(111, 66, 129, 0.32);
+  color: deeppink;
+}
+
+.blog-item {
+  background-color: deeppink;
 }
