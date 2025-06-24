@@ -40,6 +40,7 @@ form p {
 }
 
 #registerButton:hover {
-  background-color: rgba(172, 196, 230, 0.57);
+  /*background-color: rgba(172, 196, 230, 0.57);*/
+  background-color: rgba(172, 196, 230, 0.71);
 }
 
