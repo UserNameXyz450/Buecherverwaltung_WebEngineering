@@ -23,7 +23,7 @@ h1 {
   width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
   background-color: rgba(211, 211, 211, 0.44);
   padding: 20px;
@@ -39,3 +39,5 @@ h1 {
 .blog-item {
   background-color: deeppink;
 }
+
+

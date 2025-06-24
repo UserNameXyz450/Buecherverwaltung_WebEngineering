@@ -185,9 +185,9 @@ export class HomeComponent implements AfterViewInit {
       bookBox.appendChild(authorElement);
       bookBox.appendChild(imageElement);
       bookBox.appendChild(titleElement);
-      bookBox.appendChild(contentElement);
+      //bookBox.appendChild(contentElement);
 
-      // append bookBox to container (id 'entries')
+      // append bookBox to container (id 'book-entries')
       const entriesContainer = document.getElementById('book-entries');
       // @ts-ignore
       entriesContainer.appendChild(bookBox);
@@ -211,8 +211,8 @@ export class HomeComponent implements AfterViewInit {
       const titleText = bookEntries[i].title;
       titleElement.innerText = titleText;
       titleElement.addEventListener('click', () => {
-        //console.log(i);
-        this.showSelectedBook(i);
+        console.log(i);
+        //this.showSelectedBook(i);
       });
 
       //image
@@ -221,6 +221,10 @@ export class HomeComponent implements AfterViewInit {
       imageElement.alt = `Cover of ${bookEntries[i].title}`;
       imageElement.style.width = '120px';
       imageElement.style.height = 'auto';
+      imageElement.addEventListener('click', () => {
+        console.log(i);
+        this.showSelectedBook(i);
+      });
 
       //author
       const authorElement = document.createElement('p');
