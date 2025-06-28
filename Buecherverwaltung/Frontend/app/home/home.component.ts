@@ -23,7 +23,6 @@ export class HomeComponent implements AfterViewInit {
     });
     console.log(this.topic);
     this.main();
-
   }
 
 //-----------------------------------------------------------
@@ -95,6 +94,7 @@ export class HomeComponent implements AfterViewInit {
   showSelectedBook(index: number) {
     let array = [];
     array[0] = this.Entries[index];
+    console.log(this.Entries[index]);
     this.deleteAll();
 
     //this.createBox(array);
@@ -160,6 +160,10 @@ export class HomeComponent implements AfterViewInit {
       imageElement.alt = `Cover of ${bookEntries[i].title}`;
       imageElement.style.width = '120px';
       imageElement.style.height = 'auto';
+      imageElement.addEventListener('click', () => {
+        //console.log(i);
+        this.showSelectedBook(i);
+      })
 
       //author
       const authorElement = document.createElement('p');
