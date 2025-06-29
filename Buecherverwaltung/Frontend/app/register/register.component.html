@@ -1,42 +1,58 @@
-<form>
 
-  <label for="username"> Name</label>
+  <h1>Registrierung</h1>
+  <p>Erstelle einen Account, um weitere Features zu nutzen!</p>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <label for="username">Username</label>
   <input required
          autocomplete="on"
          type="text"
          id="username"
          name="username"
          size="45"
-         pattern=[0-9a-zA-Z]{4,10}
-         title="4 bis 10 Zeichen, keine Sonderzeichen, Zahlen 0 bis 9" />
+         pattern="^[a-zA-Z0-9\s]{4,30}$"
+         title="4 bis 30 Zeichen, keine Sonderzeichen, Zahlen 0 bis 9"
+         formControlName="username" />
   <br>
 
-  <label for="displayname">Username</label>
+  <label for="email">Email</label>
   <input
-    id="displayname"
-    type="text"
+    id="email"
+    type="email"
     autocomplete="on"
-    pattern="^[a-zA-Z0-9\s]{4,30}$"
-    title="4 - 30 Zeichen, keine Sonderzeichen"
-    required />
+    required
+    formControlName = "email" />
+  <br>
 
-  <br>
-  <label for="profileDescription"> <abbr title="Information about yourself" >Description</abbr></label>
-  <input id="profileDescription" type="text" autocomplete="on" />
-  <br>
   <label for="password" >Password </label>
   <input required
          autocomplete="on"
          type="password"
          id="password"
-         name="passwort"
+         name="password"
          size="45"
-         pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,12}$"
-         title="at least 12 characters, one number" />
+         maxlength="45"
+         minlength="8"
+         title="at least 6 characters, one number"
+         formControlName="password" />
+
+  
+  <label for="aboutYou"> <abbr title="Information about yourself" >About you (optional)</abbr></label>
+  <input id="aboutYou" type="text" autocomplete="on"
+  formControlName="aboutYou" />
+  <br>
+
+  <label for="profilePic">Profilbild</label><br>
+  <input id="profilePic" type="file" (change)="onFileSelected($event)">
+  
   <span class="validity"></span>
-  <p>Your password needs to consist out of 6 to 12 characters and at least one number</p>
+  <!--p>Your password needs to consist out of 6 to 12 characters and at least one number</p>
+  <!-->
   <br>
   <br>
-  <button id="registerButton" >Send!</button>
+  <button id="registerButton" type="submit">Send!</button>
+
+  <p>Formular-Status: {{registrationForm.status}}</p>
+  <p>{{registrationForm.value | json}}</p>
 
 </form>
