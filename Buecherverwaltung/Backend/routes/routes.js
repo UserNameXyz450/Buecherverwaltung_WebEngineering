@@ -20,6 +20,8 @@ router.post(
 router.post(
     '/login',
     async(req, res, next) => {
+        console.log("Bro, I reached this!!");
+        console.log(reg.body);
         passport.authenticate(
             'login',
             async(err, user, info) => {

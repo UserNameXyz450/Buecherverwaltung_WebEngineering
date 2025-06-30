@@ -56,8 +56,12 @@ passport.use(
             passwordField: 'password'
         },
         async (email, password, done) => {
+            console.log("I am alive.");
+            console.log(`searching for.-- : "${email}"`);
             try {
-                const user = await User.findOne({ email });
+                const user = await User.findOne({ email: email });
+
+                console.log("Found User: ", user);
 
                 if(!user) {
                     return done(null, false, {message: 'Uesr not found'});
