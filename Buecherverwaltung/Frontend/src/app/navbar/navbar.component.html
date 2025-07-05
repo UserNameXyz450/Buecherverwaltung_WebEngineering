@@ -1,9 +1,30 @@
 <!---navbar------------------------------------------------------------->
 <ul class="navbar">
   <li>  <a routerLink="/">home</a></li>
-  <li id="registerlogin">
-    <a routerLink="/register" id="register">register</a>
-    <a routerLink="/login" id="login">login</a>
+  <li>
+    <input type="text" placeholder="Suche nach Büchern oder Autoren..."> 
+    <button>Suchen</button>
   </li>
+  <ng-container *ngIf="!isLoggedIn">
+    <li><a routerLink="/register" >Signup</a></li>
+    <li><a routerLink="/login" >Login</a></li>
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn">
+    <li><a routerLink="/my-books" >My Books</a></li>
+    <li><a routerLink="/community" >Community</a></li>
+
+    <li>
+      <div class="profile-dropdown">
+        <a routerLink="/profile">
+          <img [src]="profilePicUrl" class="profilePic" alt="Profil">
+        </a>
+        <div class="dropdown-content">
+          <a routerLink="/profile/settings">Einstellungen</a>
+          <a (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ng-container>
+  
 </ul>
 

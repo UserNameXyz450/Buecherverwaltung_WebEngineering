@@ -25,9 +25,7 @@ export class RegisterComponent implements OnInit{
   shortLink: string = "";
   message: string | null = null;
 
-  
-
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
   
 
   ngOnInit(): void {

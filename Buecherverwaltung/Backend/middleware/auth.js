@@ -31,7 +31,8 @@ passport.use(
                     username,
                     email,
                     password,
-                    aboutYou
+                    aboutYou,
+                    followers: 0
                 });
 
                 if(req.file) {
