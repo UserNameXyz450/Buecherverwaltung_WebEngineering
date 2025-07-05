@@ -19,10 +19,11 @@ app.use(express.urlencoded({extended: true}));
 
 require('./middleware/auth');
 
+app.use('/uploads', express.static('uploads'));
+
 const authRoutes = require('./routes/routes');
 const secureRoutes = require('./routes/secure-routes');
 
-app.use('/uploads', express.static('uploads'));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', secureRoutes);
 

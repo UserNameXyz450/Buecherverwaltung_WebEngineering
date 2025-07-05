@@ -36,7 +36,7 @@ passport.use(
                 });
 
                 if(req.file) {
-                    newProfile.profilePic = req.file.path;
+                    newProfile.profilePic = req.file.filename;
                 }
 
                 await newProfile.save();

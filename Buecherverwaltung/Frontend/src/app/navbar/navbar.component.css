@@ -54,3 +54,34 @@ ul.navbar {
   gap: 20px;
   align-items: stretch;
 }
+
+/* Profile Picture Style */
+.profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 140px;
+}
+
+.profile-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
