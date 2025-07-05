@@ -35,10 +35,10 @@ export class NavbarComponent implements OnInit{
       //Ki-generiert
 
       this.profilePicUrl = `http://localhost:5000/${user.profilePic}`;
-    } /*else {
-      //this.profilePicUrl = './assets/default.jpg';
+    } else {
+      this.profilePicUrl = './assets/default.jpg';
     }
-      */
+    
 
     });
   }
