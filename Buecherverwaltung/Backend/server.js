@@ -21,11 +21,17 @@ require('./middleware/auth');
 
 app.use('/uploads', express.static('uploads'));
 
+const isAuth = require('./middleware/isAuth');
+//const bookRoutes = require('./routes/bookRoutes');
 const authRoutes = require('./routes/routes');
 const secureRoutes = require('./routes/secure-routes');
+const libraryRoutes = require('./routes/libraryRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', secureRoutes);
+app.use('/api/library', isAuth, libraryRoutes);
+app.use('/api/reviews', isAuth, reviewRoutes);
 
 app.get('/', (req, res) => {
     res.json({message: 'Backend API alive, somewhat.'});

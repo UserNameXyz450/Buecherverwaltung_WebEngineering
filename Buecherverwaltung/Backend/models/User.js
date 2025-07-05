@@ -31,7 +31,22 @@ const UserSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String
-    }
+    },
+
+    tbr: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'book'
+    }],
+
+    currentlyReading: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'book'
+    }],
+
+    read: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'review'
+    }]
 });
 
 UserSchema.pre(
