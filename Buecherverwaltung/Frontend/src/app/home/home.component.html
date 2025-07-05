@@ -1,3 +1,8 @@
+<ng-container *ngIf="isLoggedIn$ | async">
+  <!-- KI-generiert -->
+  <h1 *ngIf="currentUser$ | async as user">Hello, {{ user?.username }}!</h1>
+</ng-container>
+
 <h1> BOOKS </h1>
 
 <div id="topic-search">

@@ -1,16 +1,21 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService, User } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 
 
 export class HomeComponent implements AfterViewInit {
+  isLoggedIn$: Observable<boolean>;
+  currentUser$: Observable<User | null>;
   topic: string = 'new york';
   Entries: any[] = [];
   @ViewChild('log') logElement!: ElementRef;
@@ -23,6 +28,11 @@ export class HomeComponent implements AfterViewInit {
     });
     console.log(this.topic);
     this.main();
+  }
+
+  constructor(private authService: AuthService) {
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.currentUser$ = this.authService.currentUser$;
   }
 
 //-----------------------------------------------------------
