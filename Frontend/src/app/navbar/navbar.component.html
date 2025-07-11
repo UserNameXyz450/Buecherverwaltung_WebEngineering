@@ -1,0 +1,62 @@
+<!---navbar------------------------------------------------------------->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+</head>
+<ul class="navbar">
+  <div class="navbar-divider left">
+    <li><a id="home-button" routerLink="/" title="Home">Home</a></li>
+  </div>
+  <div class="navbar-divider middle">
+    <li id="search-combo">
+      <input
+        #searchInput
+        type="text"
+        id="searchbar"
+        placeholder="Suche nach Büchern oder Autoren..."
+        (keyup.enter)="onSearch(searchInput.value)"
+      />
+      <button
+        id="search-button"
+        title="Suchen"
+        (click)="onSearch(searchInput.value)"
+      >
+        Suchen
+      </button>
+    </li>
+  </div>
+  <div class="navbar-divider right">
+    <ng-container *ngIf="!isLoggedIn">
+      <li><a routerLink="/register">Signup</a></li>
+      <li><a routerLink="/login">Login</a></li>
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn">
+      <li>
+        <a routerLink="/library" id="my-library-button" title="My Library"
+          >My Library</a
+        >
+      </li>
+      <li>
+        <a routerLink="/community" id="community-button" title="Community"
+          >Community</a
+        >
+      </li>
+
+      <li>
+        <div class="profile-dropdown">
+          <a routerLink="/profile" title="My Profile" id="profile-button">
+            <img [src]="profilePicUrl" class="profile-pic" />
+          </a>
+          <div class="dropdown-content">
+            <a routerLink="/profile/settings" class="profile-button"
+              >Einstellungen</a
+            >
+            <a (click)="logout()" class="profile-buttons">Logout</a>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </div>
+</ul>

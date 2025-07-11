@@ -1,0 +1,14 @@
+<h1>Search Results</h1>
+<div class="output-grid" *ngIf="searchResults$ | async as books">
+  <div *ngIf="books.length === 0">
+    <p>No books found...</p>
+  </div>
+
+  <div *ngFor="let book of books">
+    <a [routerLink]="['/book', book.id]">
+      <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="Cover of {{ book.volumeInfo.title }}" />
+      <h2>{{ book.volumeInfo.title }}</h2>
+    </a>
+    <p>{{ book.volumeInfo.authors?.join(", ") }}</p>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<h1>My Library</h1>
+
+<section class="shelf">
+    <h2>To Be Read</h2>
+    <div class="shelf-grid" *ngIf="tbrBooks.length > 0; else emptyTbr">
+       <div *ngFor="let book of tbrBooks" class="shown-books">
+            <img [src]="book.coverImage" [alt]="book.title">
+            <h3>{{book.title}}</h3>
+            <p>{{book.authors?.join(', ')}}</p>
+       </div> 
+    </div>
+    <ng-template #emptyTbr><p>This shelf is empty.</p></ng-template>
+</section>
+
+<section class="shelf">
+    <h2>Currently Reading</h2>
+    <div class="shelf-grid" *ngIf="currentlyReadingBooks.length > 0; else emptyReading">
+       <div *ngFor="let book of currentlyReadingBooks" class="shown-books">
+            <img [src]="book.coverImage" [alt]="book.title">
+            <h3>{{book.title}}</h3>
+            <p>{{book.authors?.join(', ')}}</p>
+       </div> 
+    </div>
+    <ng-template #emptyReading><p>This shelf is empty.</p></ng-template>
+</section>
+
+<section class="shelf">
+    <h2>Read</h2>
+    <div class="review-grid" *ngIf="readReviews.length > 0; else emptyRead">
+       <div *ngFor="let review of readReviews" class="review-card">
+            <img [src]="review.book.coverImage" [alt]="review.book.title">
+            <h3>{{review.book.title}}</h3>
+            <p>{{review.book.authors?.join(', ')}}</p>
+            <p>My rating: {{review.rating}} /5</p>
+            <P class="comment" *ngIf="review.comment">"{{review.comment}}"</P>
+       </div> 
+    </div>
+    <ng-template #emptyRead><p>This shelf is empty.</p></ng-template>
+</section>

@@ -1,0 +1,104 @@
+h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+#topic-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+  cursor: pointer;
+}
+
+#search-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+#book-entries {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom:5%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  /*flex-wrap: wrap;
+  background-color: rgba(211, 211, 211, 0.44);*/
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#book-entries > div {
+  width: 75%;
+  background-color: rgba(111, 66, 129, 0.32);
+  color: deeppink;
+}
+
+.bookBox {
+  position: relative;
+}
+
+#goBack_getBooksButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#goBackButton {
+  margin-bottom: 7px;
+}
+
+/*Rest mit ChatGPT*/
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: white;
+  margin: 20px 0;
+}
+
+.spinner-image {
+  width: 200px;
+  height: auto;
+}
+
+.toRead {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.toRead:hover {
+  background-color: rgba(172, 196, 230, 0.71);
+}
+
+.overlay {
+  background-color: rgba(176, 196, 222, 0.76);
+  z-index: 100000;
+}
+
+.popup {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid deeppink;
+}
+
+

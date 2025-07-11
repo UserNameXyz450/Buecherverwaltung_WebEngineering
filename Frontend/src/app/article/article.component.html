@@ -1,0 +1,10 @@
+<div *ngIf="book$ | async as book">
+    <img [src]="book.volumeInfo.imageLinks?.thumbnail">
+    <div class="book-info">
+        <h2>{{ book.volumeInfo.title }}</h2>
+        <h4 *ngIf="book.volumeInfo.subtitle"> {{book.volumeInfo.subtitle}}</h4>
+        <p> by {{book.volumeInfo.authors?.join(', ')}}</p>
+        <p class="metadata">Published: {{book.volumeInfo.metadata}}</p>
+        <p class="description"> {{book.volumeInfo.description}} </p>
+    </div>
+</div>

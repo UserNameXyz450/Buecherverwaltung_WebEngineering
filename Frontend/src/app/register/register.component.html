@@ -1,0 +1,76 @@
+
+  <h1>Registrierung</h1>
+  <p>Erstelle einen Account, um weitere Features zu nutzen!</p>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <label for="username">Username</label>
+  <input required
+         autocomplete="on"
+         type="text"
+         id="username"
+         name="username"
+         size="45"
+         pattern="^[a-zA-Z0-9\s]{4,30}$"
+         title="4 bis 30 Zeichen, keine Sonderzeichen, Zahlen 0 bis 9"
+         formControlName="username" />
+  <br>
+
+  <label for="email">Email</label>
+  <input
+    id="email"
+    type="email"
+    autocomplete="on"
+    required
+    formControlName = "email" />
+  <br>
+
+  <label for="password" >Password </label>
+  <input required
+         autocomplete="on"
+         type="password"
+         id="password"
+         name="password"
+         size="45"
+         maxlength="45"
+         minlength="8"
+         formControlName="password" />
+
+    <!---nächster Absatz mit Passworthinweisen KI-generiert-->
+    <div *ngIf="registrationForm.get('password')?.touched"
+         style="margin-bottom: 30px">
+      <ng-container *ngIf="registrationForm.get('password')?.errors?.['passwordStrength'] as errors">
+        <div *ngIf="!errors.hasUpperCase || !errors.hasLowerCase
+        || !errors.hasNumber || !errors.hasSpecialCharacter">
+
+          Please include an uppercase and lowercase letter, a number and a special character</div>
+       <!--
+
+       registrationForm.get('password')?.dirty &&
+
+       <div *ngIf="!errors.hasLowerCase">Please include a lowercase letter</div>
+        <div *ngIf="!errors.hasNumber">Please include a number</div>
+        <div *ngIf="!errors.hasSpecialCharacter">Please include a special character</div>--->
+      </ng-container>
+    </div>
+
+
+  <label for="aboutYou"> <abbr title="Information about yourself" >About you (optional)</abbr></label>
+  <input id="aboutYou" type="text" autocomplete="on"
+  formControlName="aboutYou" />
+  <br>
+
+  <label for="profilePic">Profilbild</label><br>
+  <input id="profilePic" type="file" (change)="onFileSelected($event)">
+
+  <span class="validity"></span>
+  <!--p>Your password needs to consist out of 6 to 12 characters and at least one number</p>
+  <!-->
+  <br>
+  <br>
+  <button id="registerButton" type="submit">Send!</button>
+
+  <!---<p>Formular-Status: {{registrationForm.status}}</p>
+  <p>{{registrationForm.value | json}}</p>
+  <p>Image-status: {{uploadedFile}}</p>-->
+
+</form>

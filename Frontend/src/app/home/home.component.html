@@ -1,0 +1,49 @@
+<ng-container *ngIf="isLoggedIn$ | async">
+  <h1 *ngIf="currentUser$ | async as user">Hello, {{ user?.username }}!</h1>
+  <div id="currentlyReadingBooks">
+    <!-- Wird noch bearbeitet-->
+    <img src="??">
+    <h2>Title</h2>
+    <h3>Author</h3>
+    <p>Placeholder text</p>
+  </div>
+</ng-container>
+
+<h1> BOOKS </h1>
+<!---
+<div id="topic-search">
+  <label>Search for a topic:</label>
+  <div id="search-field">
+
+    <input type="text" id="topic" name="q" [(ngModel)]="topic" (ngModelChange)="logTopic()" />
+
+
+    <button id='searchButton' (click)="displayTopicBooks()">Search</button>
+  </div>
+</div>
+--->
+
+<!---ChatGPT nächste 3 Zeilen--->
+<div *ngIf="isLoading" class="spinner-container">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5nNmNxNGp3Y3B5MmU2Zzd1dWJ0dnU4ZDU1OGtwZzI2YmlkbmtuNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT77Y1T0zY1gR5qe5O/giphy.gif" alt="Loading..." class="spinner-image" />
+</div>
+
+<div id="book-entries"></div>
+
+<div *ngIf="showPopup" class="overlay">
+  <div class="popup">
+       <p>Please log in or register to use additional functions!</p>
+    <button (click)="closePopup()">Ok</button>
+  </div>
+</div>
+
+
+<div id="goBack_getBooksButton">
+  <div id="goBackButton">
+    <button (click)="showEntries()">go back</button>
+  </div>
+
+  <div id="getBooksButton">
+    <button (click)="showDifferentBooks()">show different books</button>
+  </div>
+</div>
