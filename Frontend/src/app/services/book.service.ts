@@ -18,7 +18,7 @@ export class BookService {
     );
   }
 
-  getBookById(bookId: string): Observable<any> {
+  getBookById(bookId: any): Observable<any> {
     const url = `${this.googleApiUrl}/${bookId}`;
     return this.http.get<any>(url);
   }

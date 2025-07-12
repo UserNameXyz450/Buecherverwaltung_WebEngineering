@@ -7,6 +7,7 @@ import {NgModule} from '@angular/core';
 import { SearchComponent } from './search/search.component';
 import { LibraryComponent } from './library/library.component';
 import { ArticleComponent } from './article/article.component';
+import { WriteReviewComponent } from './write-review/write-review.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchComponent },
   {path: 'library', component: LibraryComponent},
-  { path: 'book/:id', component: ArticleComponent}
+  { path: 'book/:id', component: ArticleComponent},
+  { path: 'write-review/:id', component: WriteReviewComponent}
 ];
 
 @NgModule({

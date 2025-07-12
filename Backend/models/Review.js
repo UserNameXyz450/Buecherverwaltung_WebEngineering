@@ -1,16 +1,8 @@
 const mongoose = require('mongoose');
+const { BookSchema } = require('./Book');
 
 const ReviewSchema = new mongoose.Schema({
-    book: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'book',
-        required: true
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
-    },
+    book: BookSchema,
     rating: {
         type: Number,
         //Rest von rating mit KI-generiert
@@ -18,7 +10,7 @@ const ReviewSchema = new mongoose.Schema({
         min: 1,
         max: 5
     },
-    comment: {
+    review: {
         type: String,
         trim: true
     },
@@ -29,4 +21,5 @@ const ReviewSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Review = mongoose.model('review', ReviewSchema);
+module.exports.Review = mongoose.model('review', ReviewSchema);
+module.exports.ReviewSchema = ReviewSchema;
