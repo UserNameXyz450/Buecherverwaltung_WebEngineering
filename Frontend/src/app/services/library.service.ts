@@ -14,7 +14,7 @@ export class LibraryService {
     return this.http.get(this.apiUrl);
   }
 
-  addBookToList(listName: string, bookId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${listName}`, {bookId});
+  addBookToList(listName: string, bookObject: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${listName}`, {bookObject});
   }
 }

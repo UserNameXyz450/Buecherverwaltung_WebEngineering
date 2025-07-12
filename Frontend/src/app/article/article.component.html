@@ -1,10 +1,18 @@
 <div *ngIf="book$ | async as book">
-    <img [src]="book.volumeInfo.imageLinks?.thumbnail">
-    <div class="book-info">
-        <h2>{{ book.volumeInfo.title }}</h2>
-        <h4 *ngIf="book.volumeInfo.subtitle"> {{book.volumeInfo.subtitle}}</h4>
-        <p> by {{book.volumeInfo.authors?.join(', ')}}</p>
-        <p class="metadata">Published: {{book.volumeInfo.metadata}}</p>
-        <p class="description"> {{book.volumeInfo.description}} </p>
+  <img [src]="book.volumeInfo.imageLinks?.thumbnail" />
+  <div class="book-info">
+    <h2>{{ book.volumeInfo.title }}</h2>
+    <h4 *ngIf="book.volumeInfo.subtitle">{{ book.volumeInfo.subtitle }}</h4>
+    <p>by {{ book.volumeInfo.authors?.join(", ") }}</p>
+    <p class="metadata">Published: {{ book.volumeInfo.metadata }}</p>
+    <div class="dropdown-menu">
+      <button class="main-button">Add to Library</button>
+      <div class="dropdown-content">
+        <a (click)="addToList('tbr', book)">Want to read</a>
+        <a (click)="addToList('currentlyReading', book)">Currently Reading</a>
+        <a (click)="writeReview(book)">Already Read & Review...</a>
+      </div>
     </div>
+    <p class="description">{{ book.volumeInfo.description }}</p>
+  </div>
 </div>

@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
-    isbn_13: {
+    apiId: {
         type: String,
-        required: true,
         unique: true
     },
     title: {
         type: String,
-        required: true,
     },
     author_s: {
         type: [String],
-        required: true
     },
     description: {
         type: String,
@@ -22,4 +19,5 @@ const BookSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Book = mongoose.model('book', BookSchema);
+module.exports.Book = mongoose.model('book', BookSchema);
+module.exports.BookSchema = BookSchema;

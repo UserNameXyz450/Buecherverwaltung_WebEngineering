@@ -6,19 +6,20 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-  private apiUrl = 'https://www.googleapis.com/books/v1/volumes';
+  private googleApiUrl = 'https://www.googleapis.com/books/v1/volumes';
+  private apiUrl = 'http://localhost:5000/api/library';
 
   constructor(private http: HttpClient) { }
 
   searchBooks(query: string): Observable<any[]> {
-    const url = `${this.apiUrl}?q=${encodeURIComponent(query)}`; //Zeile ist KI-generiert
+    const url = `${this.googleApiUrl}?q=${encodeURIComponent(query)}`; //Zeile ist KI-generiert
     return this.http.get<any>(url).pipe(
       map(data => data.items || [])
     );
   }
 
   getBookById(bookId: string): Observable<any> {
-    const url = `${this.apiUrl}/${bookId}`;
+    const url = `${this.googleApiUrl}/${bookId}`;
     return this.http.get<any>(url);
   }
 }

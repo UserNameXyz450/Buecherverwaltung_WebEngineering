@@ -1,6 +1,10 @@
 const passport = require('passport');
 
 //KI-generiert
-const isAuth = passport.authenticate('jwt', {session: false});
+const isAuth = (req, res, next) => {
+  
+  // Now we call passport.authenticate within it
+  passport.authenticate('jwt', { session: false })(req, res, next);
+};
 
 module.exports = isAuth;

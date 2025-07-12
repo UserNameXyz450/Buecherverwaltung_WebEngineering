@@ -1,19 +1,27 @@
 const User = require('../models/User');
 
 exports.addBookToList = async(req, res) => {
-    const { category } = req.params;
-    const { bookId } = req.body;
+    const { listName } = req.params;
+    const bookObject = req.body;
     const userId = req.user._id;
 
-    if(!['tbr', 'currentlyReading', 'read'].includes(category)) {
+    if(!['tbr', 'currentlyReading'].includes(listName)) {
         return res.status(400).json({ message: 'faulty parameter url thing.'});
     }
 
+    if (!bookObject) {
+        return res.status(400).json({message: "No Book Object"});
+    }
+
     try {
-        await User.findUserAndUpdateBooks(userId, {
-            $addToSet: { [category ]: bookId}
+        console.log(bookObject);
+        await User.findByIdAndUpdate(userId, {
+            $addToSet: { [listName ]: bookObject}
         });
+
+        res.status(200).json({message: `Book added to ${listName}`});
     } catch (error) {
+        console.error("Error in addBookToList:", error);
         res.status(500).json({message: 'Finding User or/and updating book list failed..'})
     }
 }
@@ -23,7 +31,7 @@ exports.getLibrary = async(req, res) => {
     try {
         const userLibrary = await User.findById(req.user._id)
         .populate('tbr')
-        .populate('currentReading')
+        .populate('currentlyReading')
         .populate({
             path: 'read',
             populate: {
