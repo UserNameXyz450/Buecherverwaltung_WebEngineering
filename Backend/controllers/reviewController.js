@@ -13,11 +13,17 @@ exports.writeReview = async (req, res) => {
       });
     }
 
+    const localBook = await Book.findOneAndUpdate(
+      {apiId: bookData.apiId},
+      {$set: bookData},
+      {new: true, upsert: true}
+    )
+
     const newReadEntry = {
       book: book,
       rating: rating,
       review: review,
-      createdat: new Date(),
+      createdAt: new Date(),
     };
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -51,3 +57,9 @@ exports.writeReview = async (req, res) => {
     res.status(500).json({ message: "Issue with reviewcontroller", review });
   }
 };
+
+exports.getReviewForBook = async (req, res) => {
+  try {
+    const { bookId } = req.params;
+  }
+}
