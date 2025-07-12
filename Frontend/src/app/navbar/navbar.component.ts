@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit{
     if(user && user.profilePic) {
       //Ki-generiert
 
-      this.profilePicUrl = `http://localhost:5000/${user.profilePic}`;
+      this.profilePicUrl = `http://localhost:5000/uploads/${user.profilePic}`;
     } else {
       this.profilePicUrl = './assets/default.jpg';
     }

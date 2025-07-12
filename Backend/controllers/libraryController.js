@@ -2,7 +2,8 @@ const User = require('../models/User');
 
 exports.addBookToList = async(req, res) => {
     const { listName } = req.params;
-    const bookObject = req.body;
+    const bookObject = req.body.bookObject;
+
     const userId = req.user._id;
 
     if(!['tbr', 'currentlyReading'].includes(listName)) {
@@ -15,8 +16,9 @@ exports.addBookToList = async(req, res) => {
 
     try {
         console.log(bookObject);
+        console.log(req.body);
         await User.findByIdAndUpdate(userId, {
-            $addToSet: { [listName ]: bookObject}
+            $addToSet: { [listName]: bookObject}
         });
 
         res.status(200).json({message: `Book added to ${listName}`});
