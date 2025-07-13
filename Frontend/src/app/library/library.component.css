@@ -1,0 +1,38 @@
+h1 {
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+h3 {
+    margin: 2% 0 0 0;
+}
+
+p {
+    margin: 1% 0 0 0;
+}
+
+img {
+    margin-top: 2%;
+}
+
+.shelf {
+    margin: 8% 5% 5% 5%;
+   
+}
+
+.shelf-grid .review-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: blueviolet important!;
+
+}
+
+.shown-books .review-card {
+    padding-left: 5%;
+    padding-right: 5%;
+    gap: 3%;
+}
