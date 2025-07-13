@@ -54,18 +54,10 @@ export class WriteReviewComponent implements OnInit {
       return;
     }
 
-    const bookData = {
-      apiId: this.currentBook.id,
-      title: this.currentBook.volumeInfo.title,
-      authors: this.currentBook.volumeInfo.authors,
-      description: this.currentBook.volumeInfo.description,
-      coverImage: this.currentBook.volumeInfo.imageLinks?.thumbnail
-    };
-
     const rating = this.reviewForm.value.rating;
     const comment = this.reviewForm.value.comment;
 
-    this.reviewService.writeReview(bookData, rating, comment).subscribe({
+    this.reviewService.writeReview(this.currentBook.id, rating, comment).subscribe({
       next: (response) => {
         this.message = response.message;
       }, 

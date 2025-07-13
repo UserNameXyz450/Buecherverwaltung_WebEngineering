@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const {BookSchema} = require('./Book');
-const {reviewSchema, ReviewSchema} = require('./Review');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -35,11 +33,11 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
 
-    tbr: [BookSchema],
+    tbr: [String],
 
-    currentlyReading: [BookSchema],
+    currentlyReading: [String],
 
-    read: [ReviewSchema]
+    read: [String]
 });
 
 UserSchema.pre(

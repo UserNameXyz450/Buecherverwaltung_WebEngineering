@@ -64,7 +64,7 @@ passport.use(
                 console.log("Found User: ", user);
 
                 if(!user) {
-                    return done(null, false, {message: 'Uesr not found'});
+                    return done(null, false, {message: 'User not found'});
                 }
 
                 const validate = await user.isValidPassword(password);

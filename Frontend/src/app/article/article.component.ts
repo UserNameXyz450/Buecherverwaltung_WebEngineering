@@ -39,21 +39,13 @@ export class ArticleComponent implements OnInit {
   }
 
   addToList(listName: 'tbr' | 'currentlyReading', bookFromApi: any): void {
-    const bookData = {
-      apiId: bookFromApi.id,
-      title: bookFromApi.volumeInfo.title,
-      authors: bookFromApi.volumeInfo.authors,
-      description: bookFromApi.volumeInfo.description,
-      coverImage: bookFromApi.volumeInfo.imageLinks?.thumbnail
-    };
-
-    this.libraryService.addBookToList(listName, bookData).subscribe({
+    this.libraryService.addBookToList(listName, bookFromApi.id).subscribe({
       next: (response) => {
         this.message = response.message;
       },
       error: (err) => {
         this.message = err.error?.message || 'An error occured';
-      }
-    })
+      },
+    });
   }
 }

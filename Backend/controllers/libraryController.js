@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 exports.addBookToList = async(req, res) => {
     const { listName } = req.params;
-    const bookObject = req.body.bookObject;
+    const bookId = req.body.bookId;
 
     const userId = req.user._id;
 
@@ -10,15 +10,15 @@ exports.addBookToList = async(req, res) => {
         return res.status(400).json({ message: 'faulty parameter url thing.'});
     }
 
-    if (!bookObject) {
+    if (!bookId) {
         return res.status(400).json({message: "No Book Object"});
     }
 
     try {
-        console.log(bookObject);
+        console.log(bookId);
         console.log(req.body);
         await User.findByIdAndUpdate(userId, {
-            $addToSet: { [listName]: bookObject}
+            $addToSet: { [listName]: bookId}
         });
 
         res.status(200).json({message: `Book added to ${listName}`});
@@ -32,14 +32,7 @@ exports.addBookToList = async(req, res) => {
 exports.getLibrary = async(req, res) => {
     try {
         const userLibrary = await User.findById(req.user._id)
-        .populate('tbr')
-        .populate('currentlyReading')
-        .populate({
-            path: 'read',
-            populate: {
-                path: 'book'
-            }
-        });
+            .select("tbr currentlyReading read");
 
         if(!userLibrary) {
             return res.status(400).json({message: 'issue getting user library'});

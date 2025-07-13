@@ -10,7 +10,7 @@ export class ReviewService {
 
   constructor(private http: HttpClient) { }
 
-  writeReview(bookObject: any, rating: number, review:string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reviews`, {book: bookObject, rating, review});
+  writeReview(bookId: string, rating: number, review:string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reviews`, {bookId, rating, review});
   }
 }

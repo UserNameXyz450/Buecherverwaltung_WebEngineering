@@ -26,13 +26,13 @@
 
 <section class="shelf">
     <h2>Read</h2>
-    <div class="review-grid" *ngIf="readReviews.length > 0; else emptyRead">
-       <div *ngFor="let review of readReviews" class="review-card">
-            <img [src]="review.book.coverImage" [alt]="review.book.title">
-            <h3>{{review.book.title}}</h3>
-            <p>{{review.book.authors?.join(', ')}}</p>
-            <p>My rating: {{review.rating}} /5</p>
-            <P class="comment" *ngIf="review.comment">"{{review.comment}}"</P>
+    <div class="review-grid" *ngIf="readBooks.length > 0; else emptyRead">
+       <div *ngFor="let book of readBooks" class="review-card">
+            <img [src]="book.coverImage" [alt]="book.title">
+            <h3>{{book.title}}</h3>
+            <p>{{book.authors?.join(', ')}}</p>
+            <p>My rating: {{book.review.rating}} /5</p>
+            <P class="comment" *ngIf="book.review.comment">"{{book.review.comment}}"</P>
        </div> 
     </div>
     <ng-template #emptyRead><p>This shelf is empty.</p></ng-template>
