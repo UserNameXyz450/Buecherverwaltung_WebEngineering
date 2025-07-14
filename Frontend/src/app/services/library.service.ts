@@ -15,6 +15,7 @@ export class LibraryService {
   }
 
   addBookToList(listName: string, bookId: string): Observable<any> {
+    console.log("function has been called!")
     return this.http.post(`${this.apiUrl}/${listName}`, {bookId});
   }
 }

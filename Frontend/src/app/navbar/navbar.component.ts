@@ -39,7 +39,6 @@ export class NavbarComponent implements OnInit{
       this.profilePicUrl = './assets/default.jpg';
     }
     
-
     });
   }
 

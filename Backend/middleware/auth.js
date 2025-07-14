@@ -16,6 +16,8 @@ passport.use(
             try {
                 const {username, aboutYou} = req.body;
 
+                console.log(req.body, "Reached this part of the logic in auth.");
+
                 if(!username) {
                     return done(null, false, {message: 'Username is required.'});
                 }
@@ -37,6 +39,8 @@ passport.use(
                 if(req.file) {
                     newProfile.profilePic = req.file.filename;
                 }
+
+                console.log(newProfile);
 
                 await newProfile.save();
 

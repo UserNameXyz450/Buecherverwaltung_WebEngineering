@@ -217,26 +217,3 @@ ul.navbar {
   font-size: 29px;
   color: black;
 }
-
-#community-button {
-  text-indent: -9999px;
-  overflow: hidden;
-  position: relative;
-  padding-left: 30px;
-  display: flex;
-  align-items: center;
-  height: 36px;
-}
-
-#community-button::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  content: '\f0c0';
-  position: absolute;
-  left: 8px;
-  text-indent: 0;
-  font-size: 26px;
-  color: black;
-}
-
-

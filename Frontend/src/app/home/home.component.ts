@@ -18,23 +18,22 @@ import { LibraryService } from '../services/library.service';
 
 
 export class HomeComponent implements AfterViewInit {
+
   isLoggedIn$: Observable<boolean>;
   currentUser$: Observable<User | null>;
-  //darf man das mit isUserLoggedIn?
   isUserLoggedIn: boolean = false;
   showPopup: boolean = false;
   isLoading: boolean = false;
-  /*topic: string = 'new york';*/
   topic: string | undefined;
   themes: string[] = ['science', 'history', 'art', 'architecture', 'fashion', 'psychology',
     'flowers', 'coffee', 'cat', 'fish', 'forest', 'news', 'travel', 'cooking',
     'science fiction', 'biography', 'culture', 'music', 'astronomy', 'politics', 'technology',
     'sports', 'mythology', 'law', 'philosophy', 'comics', 'radio', 'city', 'books', 'water', 'cinema', 'poems'];
+  bookId: String | undefined;
   Entries: any[] = [];
   /*@ViewChild('log') logElement!: ElementRef;
   @ViewChild('topic') topicElement!: ElementRef;*/
   private lastScrollPosition = 0;
- // LibraryService: any;
 
   ngOnInit() {
     this.isLoggedIn$.subscribe(status => {
@@ -55,16 +54,10 @@ export class HomeComponent implements AfterViewInit {
               private libraryService: LibraryService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.currentUser$ = this.authService.currentUser$;
-
     this.authService.isLoggedIn$.subscribe(status => {
       this.isUserLoggedIn = status;
       this.cdr.detectChanges();
     })
-  }
-
-
-  async getBooksFromLibrary(): Promise<void> {
-
   }
 
 
@@ -81,8 +74,6 @@ export class HomeComponent implements AfterViewInit {
   async searchTopicBooks(): Promise<void> {
 
     //console.log(this.randomTheme);
-
-
 
     if (this.topic===undefined) {
       alert("Please enter a topic!");
@@ -105,7 +96,6 @@ export class HomeComponent implements AfterViewInit {
       } catch (error) {
         console.log("Error:" + error);
       }
-
 
       this.Entries.forEach((book: any) => {
         console.log(book.title);
@@ -141,8 +131,6 @@ export class HomeComponent implements AfterViewInit {
 //-----------------------------------------------------------
   async getBooks(): Promise<void> {
 
-    //console.log(this.randomTheme);
-
     for (let i = 0; i < 10; i++) {
       let randomTheme: string = this.themes[Math.floor(Math.random()*(this.themes.length))];
       console.log(randomTheme);
@@ -157,44 +145,51 @@ export class HomeComponent implements AfterViewInit {
           throw new Error("Error: " + response.statusText);
         }
         const data = await response.json();
-       // const authors = book.authors ? book.authors.join(", ") : "unknown author"; 
-        let books = data.items?.map((item: any) => item.volumeInfo) || [];
-        //console.log(books);
-  
-
-
-
-/*
-  const data = await response.json();
-  // Map the book information from the API response
-  books = data.items?.map((item: any) => {
-    const book = item.volumeInfo;
-    const authors = book.authors ? book.authors.join(", ") : "No Authors Available";
-    const imageUrl = book.imageLinks?.thumbnail || "default-image-url.jpg";
+       
+        //let books = data.items?.map((item: any) => ...item.volumeInfo, item.id ) || [];
+        let books = data.items?.map((item: any) => ({
+          ...item.volumeInfo,
+          id: item.id,
+          
+      })) || [];
+      
+       // this.bookId = data.items?.map((item: any) => item.id) || [];
+        //console.log(this.bookId);
+        //const authors = book.authors ? book.authors.join(", ") : "unknown author"; 
     
-    return {
-      title: book.title || "No Title",
-      authors: authors,
-      publisher: book.publisher || "No Publisher",
-      publishedDate: book.publishedDate || "No Published Date",
-      imageUrl: imageUrl 
-    };
-  }) || [];*/
+  /*
+    const data = await response.json();
+
+    books = data.items?.map((item: any) => {
+      const book = item.volumeInfo;
+      const authors = book.authors ? book.authors.join(", ") : "No Authors Available";
+      const imageUrl = book.imageLinks?.thumbnail || "default-image-url.jpg";
+      
+      return {
+        title: book.title || "No Title",
+        authors: authors,
+        publisher: book.publisher || "No Publisher",
+        publishedDate: book.publishedDate || "No Published Date",
+        imageUrl: imageUrl 
+      };
+    }) || [];*/
 
 
-
+        
         this.Entries[i] = books[i];
       }
       catch (error) {
         console.log("Error:" + error);
       }
     }
-
     this.Entries.forEach((book: any) => {
+      console.log(book.id);
+      console.log(typeof(book.id))
       console.log(book.title);
       console.log(book.authors);
       console.log(book.publisher);
       console.log(book.publishedDate);
+
     })
   }
 
@@ -267,29 +262,47 @@ export class HomeComponent implements AfterViewInit {
     bookB.style.height = '100%';
 
 
-    //das funktioniert wenn der user nicht eingeloggt ist aber wenn er eingeloggt ist? idk xD
     if (this.isUserLoggedIn) {
 
+      let currentlyReadingButton = document.createElement('Button');
+      currentlyReadingButton.innerText = 'currently reading';
+      currentlyReadingButton.addEventListener('click', () => {
+          console.log('currentlyReadingButton has been clicked');
+              //wie soll man reading schreiben?
+              this.libraryService.addBookToList('currentlyReading', array[0].id);
+              console.log('currently-reading-button has been clicked');
+              console.log(array[0].id)
+            }
+      )
+            // @ts-ignore
+            bookB.appendChild(currentlyReadingButton);
+      ;
 
       let markAsReadButton = document.createElement('Button');
       markAsReadButton.innerText = 'mark as read';
       markAsReadButton.addEventListener('click', () => {
         console.log('markAsReadButton has been clicked');
-        //als gelesen markieren
-      });
-      // @ts-ignore
-      bookB.appendChild(markAsReadButton);
+            //wie soll man read schreiben?
+            this.libraryService.addBookToList('read', array[0].id);
+            console.log('mark-as-read-list-button has been clicked');
+            console.log(array[0].id)
+          
 
 
-      //only if added to readlist
+      })
+       // @ts-ignore
+      bookB.appendChild(markAsReadButton);;
+
+      /*//only if added to readlist?
       let deleteFromReadListButton = document.createElement('Button');
       deleteFromReadListButton.innerText = 'delete from read-list';
       deleteFromReadListButton.addEventListener('click', () => {
         console.log('deleteFromReadListButton has been clicked');
         //von Leseliste löschen
-      });
+      });*/
       // @ts-ignore
-      bookB.appendChild(deleteFromReadListButton);
+      //bookB.appendChild(deleteFromReadListButton);
+       // @ts-ignore
     }
   }
 
@@ -309,7 +322,9 @@ export class HomeComponent implements AfterViewInit {
       //title for each entry
       const titleElement = document.createElement('h2');
       const titleText = bookEntries[i].title;
-      titleElement.innerText = titleText;
+      if (titleText.length > 30) {
+        titleElement.innerText = titleText.substring(0, 30) + '...';
+      } titleElement.innerText = titleText;
       titleElement.addEventListener('click', () => {
         //console.log(i);
         this.showSelectedBook(i);
@@ -334,8 +349,6 @@ export class HomeComponent implements AfterViewInit {
       const authorElement = document.createElement('p');
       const authorText = bookEntries[i].authors;
       authorElement.innerText = authorText
-      console.log(typeof authorText);
-
       //authorElement.addEventListener('click', function () {
         //alert(`Author  clicked: ${authorElement.textContent}`);
         // this.getAllUserEntries(authorElement.textContent);
@@ -347,7 +360,6 @@ export class HomeComponent implements AfterViewInit {
       contentElement.innerText = contentText;
 
       //to-read-button
-
       const toReadButtonElement = document.createElement('button');
       toReadButtonElement.innerText = 'Add to read-list';
       toReadButtonElement.addEventListener('click', () => {
@@ -357,11 +369,12 @@ export class HomeComponent implements AfterViewInit {
           console.log('Please log in or register to use additional functions');
           this.showPopup = true;
             this.cdr.detectChanges();
-          }  /*else {
-            this.libraryService.addBookToList();
+          }  else {
+            //wie soll man tbr schreiben?
+            this.libraryService.addBookToList('tbr', bookEntries[i].id);
             console.log('add-to-read-list-button has been clicked');
-          }*/
-          //hinzufügen zur Leseliste mit funktion
+            console.log(bookEntries[i].id)
+          }
         });
 
 
@@ -377,8 +390,6 @@ export class HomeComponent implements AfterViewInit {
       bookBox.appendChild(imageElement);
       bookBox.appendChild(titleElement);
       bookBox.appendChild(toReadButtonElement);
-
-
       //bookBox.appendChild(contentElement);
 
       // append bookBox to container (id 'book-entries')
@@ -408,9 +419,9 @@ export class HomeComponent implements AfterViewInit {
       const titleElement = document.createElement('h2');
       const titleText = bookEntries[i].title;
       titleElement.innerText = titleText;
-      if (titleText.length > 30) {
+      /*if (titleText.length > 30) {
         titleElement.innerText = titleText.substring(0, 30) + '...'; // Add ellipsis if needed
-      }
+      }*/
       titleElement.addEventListener('click', () => {
         console.log(i);
         //this.showSelectedBook(i);
@@ -434,7 +445,7 @@ export class HomeComponent implements AfterViewInit {
 
       //to-read-button
       const toReadButtonElement = document.createElement('button');
-      toReadButtonElement.innerText = 'Add to read-list';
+      toReadButtonElement.innerText = 'add to read-list';
       toReadButtonElement.id = 'toReadButton';
       toReadButtonElement.addEventListener('click', () => {
         console.log(bookEntries[i]);
@@ -444,10 +455,12 @@ export class HomeComponent implements AfterViewInit {
           console.log('Please log in or register to use additional functions');
           this.showPopup = true;
           this.cdr.detectChanges();
-        }  /*else {
-          this.libraryService.addBookToList();
-          console.log('add-to-read-list-button has been clicked');
-        }*/
+        }  else {
+             //wie soll man tbr schreiben?
+            this.libraryService.addBookToList('tbr', bookEntries[i].id);
+            console.log('add-to-read-list-button has been clicked');
+            console.log(bookEntries[i].id)
+        }
       });
   
       //publishedDate
@@ -546,5 +559,3 @@ export class HomeComponent implements AfterViewInit {
   }
 
 }
-
-
