@@ -18,4 +18,8 @@ export class LibraryService {
     console.log("function has been called!")
     return this.http.post(`${this.apiUrl}/${listName}`, {bookId});
   }
+
+  getReviewsOfReadBooks(): Observable<any> {
+    return this.http.get(this.apiUrl)
+  }
 }

@@ -35,7 +35,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', secureRoutes);
 app.use('/api/library', isAuth, libraryRoutes);
-app.use('/api/reviews', isAuth, reviewRoutes);
+app.use('/api/', isAuth, reviewRoutes);
 
 app.get('/', (req, res) => {
     res.json({message: 'Backend API alive, somewhat.'});
