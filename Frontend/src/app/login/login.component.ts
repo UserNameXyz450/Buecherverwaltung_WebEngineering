@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 interface AuthResponse {
   message: string,
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit{
   loginForm !: FormGroup;
   message: string | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -46,7 +47,8 @@ export class LoginComponent implements OnInit{
       next: (response: any) => {
         this.message = response.message;
         console.log("Got a response: ", response.token);
-        this.loginForm.reset();
+        //this.loginForm.reset();
+        this.router.navigate(['/']);
       },
       error: (err: {error: Error}) => {
         this.message = err.error?.message || 'Login fehlgeschlagen.';

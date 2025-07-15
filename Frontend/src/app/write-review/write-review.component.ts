@@ -68,6 +68,7 @@ export class WriteReviewComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.message = response.message;
+          this.router.navigate(['book', this.currentBook.id]);
         },
         error: (err) => {
           this.message =

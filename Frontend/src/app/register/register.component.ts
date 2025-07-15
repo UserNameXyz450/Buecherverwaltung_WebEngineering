@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 //Ki-generierte Lösung für Fehler "Parameter 'response' implicitely has an 'any' type"
 interface AuthResponse {
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit{
   shortLink: string = "";
   message: string | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -120,7 +121,8 @@ export class RegisterComponent implements OnInit{
       next: (response: AuthResponse) => { //Ki-generiert
         this.message = response.message;
         console.log("User created: ", response.user.username);
-        this.registrationForm.reset();
+        //this.registrationForm.reset();
+        this.router.navigate(['/login']);
       },
       error: (err: {error: Error}) => {
         this.message = err.error?.message || 'Ein Fehler ist beim Hochladen der Daten aufgetaucht.'
