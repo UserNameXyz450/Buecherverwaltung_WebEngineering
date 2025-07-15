@@ -1,3 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+html {
+    --font-heading: "Comfortaa";
+    --font-paragraphs: "Nunito";
+    --font-funkyy: "Amatic SC";
+    --font-heading-color: rgb(15, 15, 15);
+    --font-paragraph-color: rgb(30, 30, 30);
+    --color-strong-accent: #954B8A;
+    --background-color1: #c6dec6;
+    --background-color2: #a9c5a0;
+    --background-color3: #9fa99e;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    color: var(--font-heading-color);
+}
+
 body {
+    font-family: var(--font-paragraphs);
+    color: var(--font-paragraph-color);
     margin: 0;
+    height: 100vh;
+}
+
+app-root {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+}
+
+router-outlet {
+    display: none;
 }

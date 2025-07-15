@@ -5,12 +5,20 @@ form {
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 20px;
-  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-top: 40px;
   min-height: 50vh;
   width: 80%;
-  margin: auto;
   box-shadow: 0 4px 8px lightsteelblue;
+  border-radius: 50px;
+  background-color: var(--background-color1);
+}
+
+:host {
+  padding-top: 1.5em;
+  background-color: white;
+  max-width: 1000px;
+  margin: auto;
 }
 
 label {
@@ -19,7 +27,7 @@ label {
 }
 
 input {
-  width: 50%;
+  width: 45%;
   padding: 5px;
   margin-bottom: 30px;
   border: 1px solid lightgray;
@@ -33,16 +41,24 @@ form p {
 }
 
 #registerButton {
-  padding: 5px;
-  font-size: 12px;
+  padding: 0.5em 2em;
   border: 1px solid lightgray;
-  border-radius: 4px;
+  border-radius: 1em;
   transition: background-color 0.3s;
-  margin-bottom: 50px;
+  font-size: 1.1rem;
+  background-color: var(--background-color2);
 }
 
 #registerButton:hover {
   /*background-color: rgba(172, 196, 230, 0.57);*/
   background-color: rgba(172, 196, 230, 0.71);
+}
+
+#registerHeader {
+  text-align: center;
+}
+
+#text {
+  text-align: center;
 }
 

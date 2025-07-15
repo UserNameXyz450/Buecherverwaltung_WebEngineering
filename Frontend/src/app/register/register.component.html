@@ -1,6 +1,6 @@
 
-  <h1>Registrierung</h1>
-  <p>Erstelle einen Account, um weitere Features zu nutzen!</p>
+  <h1 id="registerHeader">Registrierung</h1>
+  <p id="text">Erstelle einen Account, um weitere Features zu nutzen!</p>
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
   <label for="username">Username</label>
@@ -13,7 +13,6 @@
          pattern="^[a-zA-Z0-9\s]{4,30}$"
          title="4 bis 30 Zeichen, keine Sonderzeichen, Zahlen 0 bis 9"
          formControlName="username" />
-  <br>
 
   <label for="email">Email</label>
   <input
@@ -22,7 +21,6 @@
     autocomplete="on"
     required
     formControlName = "email" />
-  <br>
 
   <label for="password" >Password </label>
   <input required
@@ -57,16 +55,13 @@
   <label for="aboutYou"> <abbr title="Information about yourself" >About you (optional)</abbr></label>
   <input id="aboutYou" type="text" autocomplete="on"
   formControlName="aboutYou" />
-  <br>
 
-  <label for="profilePic">Profilbild</label><br>
+  <label for="profilePic">Profilbild</label>
   <input id="profilePic" type="file" (change)="onFileSelected($event)">
 
   <span class="validity"></span>
   <!--p>Your password needs to consist out of 6 to 12 characters and at least one number</p>
   <!-->
-  <br>
-  <br>
   <button id="registerButton" type="submit">Send!</button>
 
   <!---<p>Formular-Status: {{registrationForm.status}}</p>
