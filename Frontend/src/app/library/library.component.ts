@@ -28,10 +28,10 @@ export class LibraryComponent {
       this.bookServcie.getBooksByIds(data.tbr).subscribe(books => {
         this.tbrBooks = books;
       });
-       this.bookServcie.getBooksByIds(data.currentlyReading).subscribe(books => {
+      this.bookServcie.getBooksByIds(data.currentlyReading).subscribe(books => {
         this.currentlyReadingBooks = books;
       });
-       this.bookServcie.getBooksByIds(data.read).subscribe(books => {
+      this.bookServcie.getBooksByIds(data.read).subscribe(books => {
         this.readBooks = books;
       });
     });

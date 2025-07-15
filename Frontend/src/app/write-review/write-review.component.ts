@@ -37,11 +37,17 @@ export class WriteReviewComponent implements OnInit {
     });
 
     const bookId = this.route.snapshot.paramMap.get('id')!;
-    if(bookId) {
-      this.book$ = this.bookService.getBookById(bookId).pipe(
-        tap(book => this.currentBook = book)
-      );
+    if (bookId) {
+      this.book$ = this.bookService
+        .getBookById(bookId)
+        .pipe(tap((book) => (this.currentBook = book)));
     }
+    this.reviewService.getReviewOfUser(bookId).subscribe((review) => {
+      console.log(review);
+    });
+    this.reviewService.getReviewsOfBook(bookId).subscribe((reviews) => {
+      console.log(reviews);
+    });
   }
 
   setRating(rating: number): void {
@@ -49,7 +55,7 @@ export class WriteReviewComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.reviewForm.invalid) {
+    if (this.reviewForm.invalid) {
       this.message = 'Please provide a rating';
       return;
     }
@@ -57,13 +63,16 @@ export class WriteReviewComponent implements OnInit {
     const rating = this.reviewForm.value.rating;
     const comment = this.reviewForm.value.comment;
 
-    this.reviewService.writeReview(this.currentBook.id, rating, comment).subscribe({
-      next: (response) => {
-        this.message = response.message;
-      }, 
-      error: (err) => {
-        this.message = err.error?.message || 'Failed to submit review in write review'
-      }
-    })
+    this.reviewService
+      .writeReview(this.currentBook.id, rating, comment)
+      .subscribe({
+        next: (response) => {
+          this.message = response.message;
+        },
+        error: (err) => {
+          this.message =
+            err.error?.message || 'Failed to submit review in write review';
+        },
+      });
   }
 }

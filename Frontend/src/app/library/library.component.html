@@ -31,8 +31,6 @@
             <img [src]="book.coverImage" [alt]="book.title">
             <h3>{{book.title}}</h3>
             <p>{{book.authors?.join(', ')}}</p>
-            <p>My rating: {{book.review.rating}} /5</p>
-            <P class="comment" *ngIf="book.review.comment">"{{book.review.comment}}"</P>
        </div> 
     </div>
     <ng-template #emptyRead><p>This shelf is empty.</p></ng-template>

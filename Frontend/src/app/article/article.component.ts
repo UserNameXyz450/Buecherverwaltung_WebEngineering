@@ -4,6 +4,7 @@ import { BookService } from '../services/book.service';
 import { Observable, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { LibraryService } from '../services/library.service';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: 'app-article',
@@ -19,6 +20,7 @@ export class ArticleComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private libraryService: LibraryService,
+    private reviewService: ReviewService,
     private router: Router
   ) {}
 
@@ -27,6 +29,10 @@ export class ArticleComponent implements OnInit {
       switchMap((params) => {
         const bookId = params.get('id');
         if (bookId) {
+          this.reviewService.getReviewsOfBook(bookId).subscribe((reviews) => {
+            console.log("Reviews:");
+            console.log(reviews);
+          });
           return this.bookService.getBookById(bookId);
         }
         return [];
