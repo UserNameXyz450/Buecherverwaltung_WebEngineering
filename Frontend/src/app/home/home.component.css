@@ -5,8 +5,16 @@ h1 {
   margin-bottom: 70px;
 }
 
+h2 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 10px;
+  white-space:normal;
+}
+
 button {
-  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 #topic-search {
@@ -23,22 +31,18 @@ button {
   align-items: center;
 }
 
-button {
-  cursor: pointer;
-}
-
 #book-entries {
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom:5%;
+  /*margin-bottom:5%;*/
   width: 90%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   overflow: hidden;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 40px;
   flex-wrap: wrap;
   padding: 20px;
@@ -66,20 +70,20 @@ button {
   padding: 10px;
   box-sizing: border-box; 
   overflow: hidden;
-  /*flex-wrap: wrap;*/
 } 
 
 
-/*.content-description {
-  overflow: hidden;
-}*/
-
-h2 {
-  /*max-width: 80px; */
-  word-wrap: break-word;
+.content-description {
+  max-width: 100%;
+  white-space: normal;
   overflow-wrap: break-word;
-  padding: 10px;
-  white-space:normal;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  overflow: hidden;
 }
 
 #goBack_getBooksButton {
@@ -152,5 +156,3 @@ h2 {
   margin-right: 5%;
   margin-bottom:7%;
 }
-
-

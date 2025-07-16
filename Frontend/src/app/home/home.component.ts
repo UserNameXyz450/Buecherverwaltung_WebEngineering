@@ -24,15 +24,15 @@ export class HomeComponent implements AfterViewInit {
   isUserLoggedIn: boolean = false;
   showPopup: boolean = false;
   isLoading: boolean = false;
+
   topic: string | undefined;
   themes: string[] = ['science', 'history', 'art', 'architecture', 'fashion', 'psychology',
     'flowers', 'coffee', 'cat', 'fish', 'forest', 'news', 'travel', 'cooking',
     'science fiction', 'biography', 'culture', 'music', 'astronomy', 'politics', 'technology',
     'sports', 'mythology', 'law', 'philosophy', 'comics', 'radio', 'city', 'books', 'water', 'cinema', 'poems'];
   bookId: String | undefined;
+
   Entries: any[] = [];
-  /*@ViewChild('log') logElement!: ElementRef;
-  @ViewChild('topic') topicElement!: ElementRef;*/
   private lastScrollPosition = 0;
 
   ngOnInit() {
@@ -42,11 +42,6 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    /*this.topicElement.nativeElement.addEventListener("keyup", () => {
-      this.topic = this.topicElement.nativeElement.value;
-      //this.logElement.nativeElement.innerText = `Topic: ${this.topic}`;
-    });
-    console.log(this.topic);*/
     this.main();
   }
 
@@ -61,7 +56,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
 
-  //-----------------------------------------------------------
+//-----------------------------------------------------------
 // log topic in search field
 //-----------------------------------------------------------
   logTopic() {
@@ -73,7 +68,6 @@ export class HomeComponent implements AfterViewInit {
 //-----------------------------------------------------------
   async searchTopicBooks(): Promise<void> {
 
-    //console.log(this.randomTheme);
 
     if (this.topic===undefined) {
       alert("Please enter a topic!");
@@ -122,8 +116,6 @@ export class HomeComponent implements AfterViewInit {
     //nächste 2 Zeilen von ChatGPTs
     const validEntries = this.Entries.filter(book => book && book.title);
     this.createBox(validEntries);
-    //await this.testBookFunction();
-    // this.createBox(this.Entries);
   }
 
 //-----------------------------------------------------------
@@ -152,30 +144,7 @@ export class HomeComponent implements AfterViewInit {
           id: item.id,
           
       })) || [];
-      
-       // this.bookId = data.items?.map((item: any) => item.id) || [];
-        //console.log(this.bookId);
-        //const authors = book.authors ? book.authors.join(", ") : "unknown author"; 
-    
-  /*
-    const data = await response.json();
 
-    books = data.items?.map((item: any) => {
-      const book = item.volumeInfo;
-      const authors = book.authors ? book.authors.join(", ") : "No Authors Available";
-      const imageUrl = book.imageLinks?.thumbnail || "default-image-url.jpg";
-      
-      return {
-        title: book.title || "No Title",
-        authors: authors,
-        publisher: book.publisher || "No Publisher",
-        publishedDate: book.publishedDate || "No Published Date",
-        imageUrl: imageUrl 
-      };
-    }) || [];*/
-
-
-        
         this.Entries[i] = books[i];
       }
       catch (error) {
@@ -231,8 +200,6 @@ export class HomeComponent implements AfterViewInit {
     //nächste 2 Zeilen von ChatGPTs
     const validEntries = this.Entries.filter(book => book && book.title);
     this.createBox(validEntries);
-    //await this.testBookFunction();
-    // this.createBox(this.Entries);
   }
 
 
@@ -244,6 +211,7 @@ export class HomeComponent implements AfterViewInit {
     array[0] = this.Entries[index];
     console.log(this.Entries[index]);
     this.deleteAll();
+    window.scrollTo({top: 0});
 
     //this.createBox(array);
     this.createReadBox(array);
@@ -286,23 +254,9 @@ export class HomeComponent implements AfterViewInit {
             this.libraryService.addBookToList('read', array[0].id);
             console.log('mark-as-read-list-button has been clicked');
             console.log(array[0].id)
-          
-
-
       })
        // @ts-ignore
       bookB.appendChild(markAsReadButton);;
-
-      /*//only if added to readlist?
-      let deleteFromReadListButton = document.createElement('Button');
-      deleteFromReadListButton.innerText = 'delete from read-list';
-      deleteFromReadListButton.addEventListener('click', () => {
-        console.log('deleteFromReadListButton has been clicked');
-        //von Leseliste löschen
-      });*/
-      // @ts-ignore
-      //bookB.appendChild(deleteFromReadListButton);
-       // @ts-ignore
     }
   }
 
@@ -336,7 +290,6 @@ export class HomeComponent implements AfterViewInit {
       //nächste 2 Zeilen ChatGPT
       const thumbnail = bookEntries[i].imageLinks?.smallThumbnail || placeholderImage;
       imageElement.src = thumbnail;
-      /*imageElement.src = bookEntries[i].imageLinks.smallThumbnail;*/
       imageElement.alt = `Cover of ${bookEntries[i].title}`;
       imageElement.style.width = '120px';
       imageElement.style.height = 'auto';
@@ -349,10 +302,6 @@ export class HomeComponent implements AfterViewInit {
       const authorElement = document.createElement('p');
       const authorText = bookEntries[i].authors;
       authorElement.innerText = authorText
-      //authorElement.addEventListener('click', function () {
-        //alert(`Author  clicked: ${authorElement.textContent}`);
-        // this.getAllUserEntries(authorElement.textContent);
-      //});
 
       //content
       const contentElement = document.createElement('p');
@@ -419,9 +368,6 @@ export class HomeComponent implements AfterViewInit {
       const titleElement = document.createElement('h2');
       const titleText = bookEntries[i].title;
       titleElement.innerText = titleText;
-      /*if (titleText.length > 30) {
-        titleElement.innerText = titleText.substring(0, 30) + '...'; // Add ellipsis if needed
-      }*/
       titleElement.addEventListener('click', () => {
         console.log(i);
         //this.showSelectedBook(i);
@@ -438,10 +384,6 @@ export class HomeComponent implements AfterViewInit {
       const authorElement = document.createElement('p');
       const authorText = "Author: " + bookEntries[i].authors;
       authorElement.innerText = authorText;
-      authorElement.addEventListener('click', function () {
-        //alert(`Author  clicked: ${authorElement.textContent}`);
-        // this.getAllUserEntries(authorElement.textContent);
-      });
 
       //to-read-button
       const toReadButtonElement = document.createElement('button');
@@ -549,9 +491,6 @@ export class HomeComponent implements AfterViewInit {
     setTimeout(() => {
       window.scrollTo({top: lastScrollPosition});
     },100);
-
-      //await this.testBookFunction();
-      // this.createBox(this.Entries);
   }
 
   closePopup() {
