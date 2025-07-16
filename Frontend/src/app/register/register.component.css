@@ -1,24 +1,29 @@
 form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 40px;
   padding-top: 40px;
+  max-width: 1500px;
+  width: min(90%, 600px);
   min-height: 50vh;
-  width: 80%;
   box-shadow: 0 4px 8px lightsteelblue;
   border-radius: 50px;
   background-color: var(--background-color1);
 }
 
 :host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   padding-top: 1.5em;
   background-color: white;
-  max-width: 1000px;
-  margin: auto;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
 }
 
 label {
