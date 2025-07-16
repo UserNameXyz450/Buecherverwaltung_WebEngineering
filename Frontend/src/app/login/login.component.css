@@ -1,12 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 1.5em;
+  background-color: white;
+  text-align: center;
+  height: 100vh;
+}
+
 form {
   display: flex;
-  min-height: 50vh;
   flex-direction: column;
-  justify-content: center;
-  width: 80%;
   align-items: center;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  max-width: 1500px;
+  width: min(90%, 600px);
+  min-height: 30vh;
   box-shadow: 0 4px 8px lightsteelblue;
+  border-radius: 50px;
+  background-color: var(--background-color1);
+}
+
+form p {
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 label {
@@ -15,22 +36,31 @@ label {
 }
 
 input {
-  width: 50%;
+  width: 45%;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   border: 1px solid lightgray;
   border-radius: 4px;
   font-size:16px;
 }
 
 #sign-in-button {
-  padding: 5px;
-  font-size: 12px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
+  padding: 0.5em 2em;
+  border: 1px solid var(--background-color1);
+  border-radius: 1em;
   transition: background-color 0.3s;
+  font-size: 1.1rem;
+  background-color: var(--background-color2);
 }
 
 #sign-in-button:hover {
-  background-color: rgba(172, 196, 230, 0.57);
+  background-color: white;
+}
+
+#login-header {
+  text-align: center;
+}
+
+#text {
+  text-align: center;
 }

@@ -21,7 +21,6 @@ form {
   width: 100%;
   padding-top: 1.5em;
   background-color: white;
-  justify-content: center;
   text-align: center;
   height: 100vh;
 }
@@ -45,18 +44,29 @@ form p {
   margin-bottom: 20px;
 }
 
+#profilePic {
+  font-family: var(--font-paragraphs);
+  color: black;
+  padding: 0.4em;
+  border: 1px solid var(--background-color1);
+  border-radius: 0.5em;
+  background-color: var(--background-color3);
+  cursor: pointer;
+}
+
 #registerButton {
   padding: 0.5em 2em;
-  border: 1px solid lightgray;
+  border: 1px solid var(--background-color1);
   border-radius: 1em;
   transition: background-color 0.3s;
   font-size: 1.1rem;
   background-color: var(--background-color2);
+  cursor: pointer;
 }
 
 #registerButton:hover {
   /*background-color: rgba(172, 196, 230, 0.57);*/
-  background-color: rgba(172, 196, 230, 0.71);
+  background-color: rgba(255, 255, 255, 0.71);
 }
 
 #registerHeader {
