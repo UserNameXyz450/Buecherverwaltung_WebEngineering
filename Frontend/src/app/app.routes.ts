@@ -8,6 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { LibraryComponent } from './library/library.component';
 import { ArticleComponent } from './article/article.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ export const routes: Routes = [
   { path: 'search', component: SearchComponent },
   {path: 'library', component: LibraryComponent},
   { path: 'book/:id', component: ArticleComponent},
-  { path: 'write-review/:id', component: WriteReviewComponent}
+  { path: 'write-review/:id', component: WriteReviewComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

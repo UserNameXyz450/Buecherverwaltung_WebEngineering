@@ -34,9 +34,7 @@
     </ng-container>
     <ng-container *ngIf="isLoggedIn">
       <li>
-        <a routerLink="/library" id="my-library-button" title="My Library"
-          >My Library</a
-        >
+        <a routerLink="/library" id="my-library-button" title="My Library">My Library</a>
       </li>
 
       <li>
@@ -45,9 +43,6 @@
             <img [src]="profilePicUrl" class="profile-pic" />
           </a>
           <div class="dropdown-content">
-            <a routerLink="/profile/settings" class="profile-button"
-              >Einstellungen</a
-            >
             <a (click)="logout()" class="profile-buttons">Logout</a>
           </div>
         </div>

@@ -1,37 +1,37 @@
 <h1>My Library</h1>
 
-<section class="shelf">
-    <h2>To Be Read</h2>
-    <div class="shelf-grid" *ngIf="tbrBooks.length > 0; else emptyTbr">
-       <div *ngFor="let book of tbrBooks" class="shown-books">
-            <img [src]="book.coverImage" [alt]="book.title">
-            <h3>{{book.title}}</h3>
-            <p>{{book.authors?.join(', ')}}</p>
-       </div> 
-    </div>
-    <ng-template #emptyTbr><p>This shelf is empty.</p></ng-template>
-</section>
+<div class="book-shelf">
+  <div class="folder-buttons">
+    <button id="tbr-button" (click)="setShelf('tbr')" [class.selected]="currentShelf === 'tbr'">To-Be-Read</button>
+    <button id="currentlyReading-button" (click)="setShelf('currentlyReading')"
+      [class.selected]="currentShelf === 'currentlyReading'">Currently Reading</button>
+    <button id="read-button" (click)="setShelf('read')" [class.selected]="currentShelf === 'read'">Finished</button>
+  </div>
 
-<section class="shelf">
-    <h2>Currently Reading</h2>
-    <div class="shelf-grid" *ngIf="currentlyReadingBooks.length > 0; else emptyReading">
-       <div *ngFor="let book of currentlyReadingBooks" class="shown-books">
-            <img [src]="book.coverImage" [alt]="book.title">
-            <h3>{{book.title}}</h3>
-            <p>{{book.authors?.join(', ')}}</p>
-       </div> 
+  <section class="currently-selected">
+    <div class="sorting-options">
+      <select [(ngModel)]="sortBy" (ngModelChange)="sortBooks()">
+        <option value="title">Title</option>
+        <option value="authors">Author</option>
+        <option value="publishedDate">Release Date</option>
+      </select>
+      <select [(ngModel)]="sortAscending" (ngModelChange)="sortBooks()">
+        <option [ngValue]="true">Ascending</option>
+        <option [ngValue]="false">Descending</option>
+      </select>
     </div>
-    <ng-template #emptyReading><p>This shelf is empty.</p></ng-template>
-</section>
-
-<section class="shelf">
-    <h2>Read</h2>
-    <div class="review-grid" *ngIf="readBooks.length > 0; else emptyRead">
-       <div *ngFor="let book of readBooks" class="review-card">
-            <img [src]="book.coverImage" [alt]="book.title">
-            <h3>{{book.title}}</h3>
-            <p>{{book.authors?.join(', ')}}</p>
-       </div> 
+    <div class="books">
+      @if (selectedBooks.length > 0) {
+      @for (book of selectedBooks; track book.id) {
+      <div class="selectedBooks">
+        <img [src]="book.coverImage" [alt]="book.title" />
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.authors?.join(", ") }}</p>
+      </div>
+      }
+      } @else {
+      <p>This shelf is empty.</p>
+      }
     </div>
-    <ng-template #emptyRead><p>This shelf is empty.</p></ng-template>
-</section>
+  </section>
+</div>

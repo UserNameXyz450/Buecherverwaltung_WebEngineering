@@ -1,38 +1,69 @@
-h1 {
-    margin-left: 5%;
+:host {
+    max-width: 100vh;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 10%;
+    padding: 1em 1.5em;
 }
 
-h3 {
-    margin: 2% 0 0 0;
+.book-shelf {
+    
 }
 
-p {
-    margin: 1% 0 0 0;
-}
-
-img {
-    margin-top: 2%;
-}
-
-.shelf {
-    margin: 8% 5% 5% 5%;
-   
-}
-
-.shelf-grid .review-grid {
+.folder-buttons {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    background-color: blueviolet important!;
-
+    gap: 0.5em;
+    margin-bottom: 1em;
 }
 
-.shown-books .review-card {
-    padding-left: 5%;
-    padding-right: 5%;
-    gap: 3%;
+.folder-buttons button {
+    background-color: var(--background-color3);
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: var(--font-funkyy);
+    font-weight: bold;
+}
+
+.selected {
+    border-bottom: none;
+}
+
+.currently-selected {
+    display: flex;
+    gap: 1em;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    flex-wrap: wrap;
+    padding: 1em 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    background: var(--background-color3);
+    box-shadow: 0 2px 5px var(--background-color1);
+}
+
+.currently-selected .selectedBooks {
+    width: 150px;
+    display: grid;
+    grid-template-rows: 70% auto auto;
+    text-align: center;
+}
+
+.currently-selected .selectedBooks h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.currently-selected .selectedBooks p {
+    margin: 0;
+    padding: 0;
+}
+
+.currently-selected .selectedBooks img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
 }

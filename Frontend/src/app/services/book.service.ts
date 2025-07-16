@@ -36,6 +36,7 @@ export class BookService {
         title: book.volumeInfo?.title,
         authors: book.volumeInfo?.authors || [],
         coverImage: book.volumeInfo?.imageLinks?.thumbnail || '',
+        publishedDate: book.volumeInfo?.publishedDate,
       }))
     );
   });

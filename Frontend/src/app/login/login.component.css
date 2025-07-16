@@ -51,6 +51,7 @@ input {
   transition: background-color 0.3s;
   font-size: 1.1rem;
   background-color: var(--background-color2);
+  cursor: pointer;
 }
 
 #sign-in-button:hover {

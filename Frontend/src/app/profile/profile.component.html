@@ -1,13 +1,9 @@
 <h1>PROFILE</h1>
-<div class="profile">
-  <div class="picture">
-    <img src={{imageURL}} alt="profile picture">
-  </div>
-  <div class="name">
-    <p> {{name}} </p>
-  </div>
-</div>
-<div class="info">
-</div>
-<div class="book-list">
-</div>
+<img [src]="profilePicUrl" class="profile-pic">
+<button></button>
+<h2>{{currentUser?.username}}</h2>
+<button></button>
+<p id="about-you-tag">{{currentUser?.username}}</p>
+<button></button>
+<p>You have hmhm books to read, hmhm currently reading, hmhm finished.</p>
+<p>Last book finished: </p>
