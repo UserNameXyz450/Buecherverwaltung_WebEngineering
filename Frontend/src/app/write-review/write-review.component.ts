@@ -38,7 +38,6 @@ export class WriteReviewComponent implements OnInit {
       comment: new FormControl(''),
     });
 
-    console.log(this.reviewForm);
     const bookId = this.route.snapshot.paramMap.get('id')!;
     if (bookId) {
       this.book$ = this.bookService

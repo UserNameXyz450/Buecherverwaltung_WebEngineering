@@ -15,8 +15,6 @@ exports.addBookToList = async(req, res) => {
     }
 
     try {
-        console.log(bookId);
-        console.log(req.body);
         await User.findByIdAndUpdate(userId, {
             $addToSet: { [listName]: bookId}
         });

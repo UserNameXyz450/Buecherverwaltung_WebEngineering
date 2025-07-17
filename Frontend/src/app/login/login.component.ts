@@ -39,14 +39,10 @@ export class LoginComponent implements OnInit{
       password: this.loginForm.get('password')?.value
     }
 
-    
-
-    console.log("Sende Daten...");
 
     this.authService.login(loginData).subscribe({
       next: (response: any) => {
         this.message = response.message;
-        console.log("Got a response: ", response.token);
         //this.loginForm.reset();
         this.router.navigate(['/']);
       },

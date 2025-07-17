@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit{
     });
 
     this.authService.currentUser$.subscribe(user =>  {
-      console.log('Current user from AuthService:', user);
       this.currentUser = user;
 
     if(user && user.profilePic) {

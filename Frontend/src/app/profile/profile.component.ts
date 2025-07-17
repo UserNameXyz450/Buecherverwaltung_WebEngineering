@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
     });
 
     this.libraryService.getLibrary().subscribe((bookIds) => {
-      console.log(bookIds);
       this.counts = {
         tbr: bookIds.tbr.length || 0,
         currentlyReading: bookIds.currentlyReading.length || 0,

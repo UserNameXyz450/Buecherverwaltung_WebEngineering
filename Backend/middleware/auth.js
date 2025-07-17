@@ -16,8 +16,6 @@ passport.use(
             try {
                 const {username, aboutYou} = req.body;
 
-                console.log(req.body, "Reached this part of the logic in auth.");
-
                 if(!username) {
                     return done(null, false, {message: 'Username is required.'});
                 }
@@ -40,8 +38,6 @@ passport.use(
                     newProfile.profilePic = req.file.filename;
                 }
 
-                console.log(newProfile);
-
                 await newProfile.save();
 
                 return done(null, newProfile);
@@ -60,12 +56,8 @@ passport.use(
             passwordField: 'password'
         },
         async (email, password, done) => {
-            console.log("I am alive.");
-            console.log(`searching for.-- : "${email}"`);
             try {
                 const user = await User.findOne({ email: email });
-
-                console.log("Found User: ", user);
 
                 if(!user) {
                     return done(null, false, {message: 'User not found'});

@@ -45,33 +45,24 @@ export class RegisterComponent implements OnInit{
   validatePassword(): ValidatorFn {
     return (control:AbstractControl) : ValidationErrors | null => {
       const value = control.value;
-     /* if (!value) {
-        console.log('password is valid');
-        return null;
-      }*/
       const length = value.length;
       const hasUpperCase = /[A-Z]+/.test(value);
       const hasLowerCase = /[a-z]+/.test(value);
       const hasNumber = /[0-9]+/.test(value);
-      //const hasSpecialCharacter = /[!§$%&?=#*+_^<>'`´()/]+/.test(value);
       const hasSpecialCharacter = /[^A-Za-z0-9]+/.test(value);
       const validPassword = hasUpperCase && hasLowerCase && hasNumber && hasSpecialCharacter && (length>=8);
 
       if (!validPassword && control.dirty) {
-        console.log('password is invalid');
         return {
           passwordStrength: true,
         }
       } else if (validPassword ) {
-        console.log('password is valid');
         return null;
       } else {
-        console.log('password field untouched');
         return {
           passwordStrength: true,
         };
       }
-      //return !validPassword ? {passwordStrength:true}: null;
     }
   }
 
@@ -115,13 +106,9 @@ export class RegisterComponent implements OnInit{
       formData.append('profilePic', this.uploadedFile);
     }
 
-    console.log("Sende Daten...");
-
     this.authService.register(formData).subscribe({
-      next: (response: AuthResponse) => { //Ki-generiert
+      next: (response: AuthResponse) => {
         this.message = response.message;
-        console.log("User created: ", response.user.username);
-        //this.registrationForm.reset();
         this.router.navigate(['/login']);
       },
       error: (err: {error: Error}) => {

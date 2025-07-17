@@ -29,7 +29,6 @@ export class StarRatingComponent {
   }
 
   starClicked(index: number) {
-    console.log(index);
     this.ratingChange.emit(index + 1);
   }
 }

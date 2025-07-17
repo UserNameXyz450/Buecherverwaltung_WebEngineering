@@ -67,7 +67,6 @@ export class BookService {
   }
 
   formatBookFromApiResponse(book: any): any {
-    console.log(book);
     return {
       id: book.id,
       title: book.volumeInfo?.title,

@@ -82,7 +82,6 @@ export class HomeComponent {
     this.showDifferentBooks();
     if (this.isUserLoggedIn) {
       this.libraryService.getLibrary().subscribe((bookIds) => {
-        console.log(bookIds);
         this.bookService
           .getBooksByIds(bookIds.currentlyReading)
           .subscribe((books) => {
@@ -107,7 +106,6 @@ export class HomeComponent {
     this.bookService
       .searchTopicBooks(this.getRandomBookTheme())
       .subscribe((books) => {
-        console.log(books);
         this.books = books;
         this.currentlySearchingForBooks = false;
       });

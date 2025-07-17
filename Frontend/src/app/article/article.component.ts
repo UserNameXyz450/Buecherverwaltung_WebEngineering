@@ -48,7 +48,6 @@ export class ArticleComponent implements OnInit {
         book.volumeInfo.description
       );
       this.book = book;
-      console.log(this.book);
     });
   }
 

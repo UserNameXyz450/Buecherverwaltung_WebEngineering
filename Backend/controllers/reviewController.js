@@ -2,7 +2,6 @@ const Review = require("../models/Review");
 const User = require("../models/User");
 
 exports.writeReview = async (req, res) => {
-    console.log("Received request body:", req.body);
     try {
         const { bookId, rating, review } = req.body;
         const userId = req.user._id;
