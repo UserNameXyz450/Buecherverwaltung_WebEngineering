@@ -1,19 +1,21 @@
 <h1>Search Results</h1>
-<div class="output-grid" *ngIf="searchResults$ | async as books">
-  <div *ngIf="books.length === 0">
-    <p>No books found...</p>
+
+@if (searchResults$ | async; as books) {
+  <div class="output-grid">
+    <section class="books">
+      @for (book of books; track book.id) {
+        <div class="book">
+          <a [routerLink]="['/book', book.id]">
+            <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
+          </a>
+          <a [routerLink]="['/book', book.id]">
+            <h3>{{ book.title }}</h3>
+          </a>
+          <p>{{ book.authors?.join(", ") }}</p>
+        </div>
+      } @empty {
+        <p>No books found...</p>
+      }
+    </section>
   </div>
-
-  <section class="books">
-    <div *ngFor="let book of books" class="book">
-      <a [routerLink]="['/book', book.id]">
-        <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
-      </a>
-      <a [routerLink]="['/book', book.id]">
-        <h3>{{ book.title }}</h3>
-      </a>
-
-      <p>{{ book.authors?.join(", ") }}</p>
-    </div>
-  </section>
-</div>
+}

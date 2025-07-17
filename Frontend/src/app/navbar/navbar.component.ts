@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit{
 
       this.profilePicUrl = `http://localhost:5000/uploads/${user.profilePic}`;
     } else {
-      this.profilePicUrl = './assets/default.jpg';
+      this.profilePicUrl = '../assets/default.jpg';
     }
     
     });
