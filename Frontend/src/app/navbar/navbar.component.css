@@ -12,8 +12,8 @@
   margin: 0;
   padding: 0 1em;
 
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 
   background-color: lightsteelblue;
   text-decoration: none;
