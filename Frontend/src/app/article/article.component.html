@@ -1,10 +1,26 @@
-<div *ngIf="book$ | async as book">
-  <img [src]="book.volumeInfo.imageLinks?.thumbnail" />
+@if(book) {
+<div>
+  <img [src]="book.volumeInfo.imageLinks?.thumbnail" class="bookCover"/>
   <div class="book-info">
     <h2>{{ book.volumeInfo.title }}</h2>
+    @if(ratings) {
+    <div class="ratingWithNumber">
+      <app-star-rating [rating]="ratings.average"></app-star-rating>
+      @if(ratings.count == 0) {
+      <p>No ratings yet</p>
+      } @else {
+      <p>{{ ratings.average | number : "1.1-1" }}/5</p>
+      <p>({{ ratings.count }})</p>
+      }
+    </div>
+    } @else { }
     <h4 *ngIf="book.volumeInfo.subtitle">{{ book.volumeInfo.subtitle }}</h4>
     <p>by {{ book.volumeInfo.authors?.join(", ") }}</p>
-    <p class="metadata">Published: {{ book.volumeInfo.metadata }}</p>
+    @if (book.volumeInfo.publishedDate) {
+    <p class="metadata">
+      Published: {{ parseDate(book.volumeInfo.publishedDate) }}
+    </p>
+    }
     <div class="dropdown-menu">
       <button class="main-button">Add to Library</button>
       <div class="dropdown-content">
@@ -13,6 +29,35 @@
         <a (click)="writeReview(book)">Already Read & Review...</a>
       </div>
     </div>
-    <p class="description">{{ book.volumeInfo.description }}</p>
+    @if (book.volumeInfo.description){
+    <div class="description" [innerHTML]="sanitizedDescription"></div>
+    }
+    <section class="reviews">
+      @if(reviews.length > 0) {
+        <h2>Reviews ({{reviews.length}})</h2>
+      } @else {
+        <h2>No Reviews yet</h2>
+      }
+      @for (review of reviews; track $index) {
+      <div class="review">
+        <div class="ratingWithNumber">
+          <app-star-rating [rating]="review.rating"></app-star-rating>
+          <p>{{ review.rating }}/5</p>
+        </div>
+        <div class="review-user">
+          <p class="review-user-username">{{ review.user.username }}</p>
+          <div class="review-user-profilePicBorder">
+            <img
+              [src]="getProfilePicUrl(review.user.profilePic)"
+              class="review-user-profilePic"
+            />
+          </div>
+        </div>
+        <p class="review-date">{{ parseDate(review.createdAt) }}</p>
+        <p class="review-text">{{ review.review }}</p>
+      </div>
+      }
+    </section>
   </div>
 </div>
+}

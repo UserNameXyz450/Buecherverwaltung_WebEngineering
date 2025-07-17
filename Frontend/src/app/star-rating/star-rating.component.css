@@ -1,0 +1,10 @@
+.fa-star,
+.fa-star-half-alt {
+  color: gold;
+  margin-right: 2px;
+}
+
+.far.fa-star {
+  color: lightgray;
+  margin-right: 2px;
+}

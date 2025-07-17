@@ -1,69 +1,103 @@
 :host {
-    max-width: 100vh;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1em 1.5em;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1.5em;
 }
 
-.book-shelf {
-    
+.sorting-options {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.5em;
+}
+
+.selectedBooks a {
+  text-decoration: none;
+  color: unset;
+  transition: ease-in 0.15s color;
+  justify-self: center;
+}
+
+.selectedBooks a:hover, .selectedBooks a:hover + a {
+  color: rgb(128, 30, 255);
+}
+
+.sorting-options p {
+  font-weight: bold;
+  margin: 0;
+}
+
+.sorting-options select {
+  background-color: var(--background-color1);
+  border-radius: 0.5em;
+  padding: 0.3em 0 0.3em 0.3em;
 }
 
 .folder-buttons {
-    display: flex;
-    gap: 0.5em;
-    margin-bottom: 1em;
+  display: flex;
+  position: relative;
+  top: 1px;
 }
 
 .folder-buttons button {
-    background-color: var(--background-color3);
-    padding: 0.5em 1em;
-    cursor: pointer;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-family: var(--font-funkyy);
-    font-weight: bold;
+  background-color: var(--background-color3);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border-radius: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  font-family: var(--font-funkyy);
+  font-weight: bolder;
+  font-size: 1.3rem;
 }
 
-.selected {
-    border-bottom: none;
+.folder-buttons button.selected {
+  border-bottom-color: transparent;
 }
 
 .currently-selected {
-    display: flex;
-    gap: 1em;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    flex-wrap: wrap;
-    padding: 1em 0;
-    border: 1px solid black;
-    border-radius: 4px;
-    background: var(--background-color3);
-    box-shadow: 0 2px 5px var(--background-color1);
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em 2em;
+  border: 1px solid black;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  background: var(--background-color3);
+  box-shadow: 0 2px 5px var(--background-color1);
+}
+
+.books {
+  display: flex;
+  gap: 3em;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 
 .currently-selected .selectedBooks {
-    width: 150px;
-    display: grid;
-    grid-template-rows: 70% auto auto;
-    text-align: center;
+  width: 300px;
+  height: 400px;
+  display: grid;
+  grid-template-rows: 70% auto 1fr;
+  text-align: center;
 }
 
 .currently-selected .selectedBooks h3 {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
+  margin: 0.5em 0 0;
+  padding: 0;
+  font-weight: bold;
 }
 
 .currently-selected .selectedBooks p {
-    margin: 0;
-    padding: 0;
+  margin: 0.4em 0 0;
+  padding: 0;
 }
 
 .currently-selected .selectedBooks img {
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
+  height: 100%;
+  border-radius: 4px;
 }

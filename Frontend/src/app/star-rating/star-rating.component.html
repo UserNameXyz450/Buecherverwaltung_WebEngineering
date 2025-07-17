@@ -1,0 +1,9 @@
+@for (star of getStars(); track $index) {
+  @if (star === 'full') {
+    <i class="fas fa-star"></i>
+  } @else if (star === 'half') {
+    <i class="fas fa-star-half-alt"></i>
+  } @else {
+    <i class="far fa-star"></i>
+  }
+}

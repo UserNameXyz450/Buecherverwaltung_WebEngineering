@@ -2,14 +2,32 @@
 
 <div class="book-shelf">
   <div class="folder-buttons">
-    <button id="tbr-button" (click)="setShelf('tbr')" [class.selected]="currentShelf === 'tbr'">To-Be-Read</button>
-    <button id="currentlyReading-button" (click)="setShelf('currentlyReading')"
-      [class.selected]="currentShelf === 'currentlyReading'">Currently Reading</button>
-    <button id="read-button" (click)="setShelf('read')" [class.selected]="currentShelf === 'read'">Finished</button>
+    <button
+      id="tbr-button"
+      (click)="setShelf('tbr')"
+      [class.selected]="currentShelf === 'tbr'"
+    >
+      To-Be-Read
+    </button>
+    <button
+      id="currentlyReading-button"
+      (click)="setShelf('currentlyReading')"
+      [class.selected]="currentShelf === 'currentlyReading'"
+    >
+      Currently Reading
+    </button>
+    <button
+      id="read-button"
+      (click)="setShelf('read')"
+      [class.selected]="currentShelf === 'read'"
+    >
+      Finished
+    </button>
   </div>
 
   <section class="currently-selected">
     <div class="sorting-options">
+      <p>Sort by</p>
       <select [(ngModel)]="sortBy" (ngModelChange)="sortBooks()">
         <option value="title">Title</option>
         <option value="authors">Author</option>
@@ -21,15 +39,18 @@
       </select>
     </div>
     <div class="books">
-      @if (selectedBooks.length > 0) {
-      @for (book of selectedBooks; track book.id) {
+      @if (selectedBooks.length > 0) { @for (book of selectedBooks; track
+      book.id) {
       <div class="selectedBooks">
-        <img [src]="book.coverImage" [alt]="book.title" />
-        <h3>{{ book.title }}</h3>
+        <a href="/book/{{book.id}}">
+          <img [src]="book.coverImage" [alt]="book.title" />
+        </a>
+        <a href="/book/{{book.id}}">
+          <h3>{{ book.title }}</h3>
+        </a>
         <p>{{ book.authors?.join(", ") }}</p>
       </div>
-      }
-      } @else {
+      } } @else {
       <p>This shelf is empty.</p>
       }
     </div>

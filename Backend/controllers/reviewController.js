@@ -76,10 +76,10 @@ exports.getReviewOfBookAndUser = async (req, res) => {
 exports.getReviewsOfBook = async (req, res) => {
     try {
         const { bookId } = req.params;
-        const reviews = await Review.find({ bookId: bookId });
+        const reviews = await Review.find({ bookId: bookId }).populate("user", "username profilePic");
         res.status(200).json(reviews);
     } catch (error) {
-        console.error("Error in getReviewForBook");
+        console.error("Error in getReviewForBook: " + error);
     }
 };
 
