@@ -2,7 +2,7 @@
 <h1>Books you're currently reading</h1>
 
 <div class="books">
-  @for(book of currentlyReadingBooks; track $index) {
+  @for(book of currentlyReadingBooks; track book.id) {
   <div class="book">
     <a [routerLink]="['/book', book.id]">
       <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
@@ -30,37 +30,27 @@
     [disabled]="currentlySearchingForBooks"
   ></button>
 </div>
-<!---
-<div id="topic-search">
-  <label>Search for a topic:</label>
-  <div id="search-field">
-
-    <input type="text" id="topic" name="q" [(ngModel)]="topic" (ngModelChange)="logTopic()" />
-
-
-    <button id='searchButton' (click)="displayTopicBooks()">Search</button>
-  </div>
-</div>
---->
-
-<!---ChatGPT nächste 3 Zeilen--->
-<div *ngIf="isLoading" class="spinner-container">
+@if (isLoading) {
+<div class="spinner-container">
   <img
     src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5nNmNxNGp3Y3B5MmU2Zzd1dWJ0dnU4ZDU1OGtwZzI2YmlkbmtuNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT77Y1T0zY1gR5qe5O/giphy.gif"
     alt="Loading..."
     class="spinner-image"
   />
 </div>
+}
 
-<div *ngIf="showPopup" class="overlay">
+@if (showPopup) {
+<div class="overlay">
   <div class="popup">
     <p>Please log in or register to use additional functions!</p>
     <button (click)="closePopup()">Ok</button>
   </div>
 </div>
+}
 
 <div class="books">
-  @for(book of books; track $index) {
+  @for(book of books; track book.id) {
   <div class="book">
     <a [routerLink]="['/book', book.id]">
       <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />

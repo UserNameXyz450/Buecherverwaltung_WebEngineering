@@ -14,7 +14,9 @@
       }
     </div>
     } @else { }
-    <h4 *ngIf="book.volumeInfo.subtitle">{{ book.volumeInfo.subtitle }}</h4>
+    @if(book.volumeInfo.subtitle) {
+      <h4>{{book.volumeInfo.subtitle}}</h4>
+    }
     <p>by {{ book.volumeInfo.authors?.join(", ") }}</p>
     @if (book.volumeInfo.publishedDate) {
     <p class="metadata">
