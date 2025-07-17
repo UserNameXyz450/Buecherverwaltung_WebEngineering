@@ -1,15 +1,35 @@
-<ng-container *ngIf="isLoggedIn$ | async">
-  <h1 *ngIf="currentUser$ | async as user">Hello, {{ user?.username }}!</h1>
-  <div id="currentlyReadingBooks">
-    <!-- Wird noch bearbeitet-->
-    <img src="??">
-    <h2>Title</h2>
-    <h3>Author</h3>
-    <p>Placeholder text</p>
-  </div>
-</ng-container>
+@if(isUserLoggedIn && currentlyReadingBooks.length > 0) {
+<h1>Books you're currently reading</h1>
 
-<h1> BOOKS </h1>
+<div class="books">
+  @for(book of currentlyReadingBooks; track $index) {
+  <div class="book">
+    <a [routerLink]="['/book', book.id]">
+      <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
+    </a>
+    <a [routerLink]="['/book', book.id]">
+      <h3>{{ book.title }}</h3>
+    </a>
+
+    <p>{{ book.authors?.join(", ") }}</p>
+  </div>
+  }
+</div>
+}
+
+<div class="randomBooksHeading">
+  <h1
+    (click)="showDifferentBooks()"
+    [class.enabled]="!currentlySearchingForBooks"
+  >
+    Random {{ this.currentTheme }} books
+  </h1>
+  <button
+    class="fas fa-sync"
+    (click)="showDifferentBooks()"
+    [disabled]="currentlySearchingForBooks"
+  ></button>
+</div>
 <!---
 <div id="topic-search">
   <label>Search for a topic:</label>
@@ -25,27 +45,31 @@
 
 <!---ChatGPT nächste 3 Zeilen--->
 <div *ngIf="isLoading" class="spinner-container">
-  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5nNmNxNGp3Y3B5MmU2Zzd1dWJ0dnU4ZDU1OGtwZzI2YmlkbmtuNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT77Y1T0zY1gR5qe5O/giphy.gif" alt="Loading..." class="spinner-image" />
+  <img
+    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG5nNmNxNGp3Y3B5MmU2Zzd1dWJ0dnU4ZDU1OGtwZzI2YmlkbmtuNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT77Y1T0zY1gR5qe5O/giphy.gif"
+    alt="Loading..."
+    class="spinner-image"
+  />
 </div>
-
-
 
 <div *ngIf="showPopup" class="overlay">
   <div class="popup">
-       <p>Please log in or register to use additional functions!</p>
+    <p>Please log in or register to use additional functions!</p>
     <button (click)="closePopup()">Ok</button>
   </div>
 </div>
 
-<div id="book-entries"></div>
+<div class="books">
+  @for(book of books; track $index) {
+  <div class="book">
+    <a [routerLink]="['/book', book.id]">
+      <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
+    </a>
+    <a [routerLink]="['/book', book.id]">
+      <h3>{{ book.title }}</h3>
+    </a>
 
-
-<div id="goBack_getBooksButton">
-  <div id="goBackButton">
-    <button (click)="showEntries()">go back</button>
+    <p>{{ book.authors?.join(", ") }}</p>
   </div>
-
-  <div id="getBooksButton">
-    <button (click)="showDifferentBooks()">show different books</button>
-  </div>
+  }
 </div>

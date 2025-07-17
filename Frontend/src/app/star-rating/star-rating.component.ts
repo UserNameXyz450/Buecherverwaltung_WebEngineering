@@ -1,12 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.css']
+  styleUrls: ['./star-rating.component.css'],
 })
 export class StarRatingComponent {
   @Input() rating: number = 0;
+  @Input() clickable: boolean = false;
+  @Output() ratingChange = new EventEmitter<number>(); // KI
 
   getStars(): ('full' | 'half' | 'empty')[] {
     const stars: ('full' | 'half' | 'empty')[] = [];
@@ -24,5 +26,10 @@ export class StarRatingComponent {
     }
 
     return stars;
+  }
+
+  starClicked(index: number) {
+    console.log(index);
+    this.ratingChange.emit(index + 1);
   }
 }

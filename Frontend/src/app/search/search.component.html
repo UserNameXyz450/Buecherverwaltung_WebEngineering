@@ -4,11 +4,16 @@
     <p>No books found...</p>
   </div>
 
-  <div *ngFor="let book of books">
-    <a [routerLink]="['/book', book.id]">
-      <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="Cover of {{ book.volumeInfo.title }}" />
-      <h2>{{ book.volumeInfo.title }}</h2>
-    </a>
-    <p>{{ book.volumeInfo.authors?.join(", ") }}</p>
-  </div>
+  <section class="books">
+    <div *ngFor="let book of books" class="book">
+      <a [routerLink]="['/book', book.id]">
+        <img [src]="book.coverImage" alt="Cover of {{ book.title }}" />
+      </a>
+      <a [routerLink]="['/book', book.id]">
+        <h3>{{ book.title }}</h3>
+      </a>
+
+      <p>{{ book.authors?.join(", ") }}</p>
+    </div>
+  </section>
 </div>

@@ -66,7 +66,7 @@ exports.writeReview = async (req, res) => {
 exports.getReviewOfBookAndUser = async (req, res) => {
     try {
         const { bookId } = req.params;
-        const review = await Review.findOne({ user: req.user_id, bookId: bookId });
+        const review = await Review.findOne({ user: req.user._id, bookId: bookId });
         res.status(200).json(review);
     } catch (error) {
         console.error("Error in getReviewForBook");
@@ -85,7 +85,7 @@ exports.getReviewsOfBook = async (req, res) => {
 
 exports.getReviewsOfUser = async (req, res) => {
     try {
-        const reviews = await Review.find({ user: req.user_id });
+        const reviews = await Review.find({ user: req.user._id });
         res.status(200).json(reviews);
     } catch (error) {
         console.error("Error in getReviewForBook");

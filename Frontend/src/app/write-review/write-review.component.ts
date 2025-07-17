@@ -10,10 +10,11 @@ import { Observable, switchMap, tap } from 'rxjs';
 import { BookService } from '../services/book.service';
 import { ReviewService } from '../services/review.service';
 import { CommonModule } from '@angular/common';
+import { StarRatingComponent } from "../star-rating/star-rating.component";
 
 @Component({
   selector: 'app-write-review',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, StarRatingComponent],
   templateUrl: './write-review.component.html',
   styleUrl: './write-review.component.css',
 })
@@ -22,6 +23,7 @@ export class WriteReviewComponent implements OnInit {
   reviewForm!: FormGroup;
   message: string | null = null;
   private currentBook: any;
+  rating: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +38,7 @@ export class WriteReviewComponent implements OnInit {
       comment: new FormControl(''),
     });
 
+    console.log(this.reviewForm);
     const bookId = this.route.snapshot.paramMap.get('id')!;
     if (bookId) {
       this.book$ = this.bookService
@@ -43,14 +46,16 @@ export class WriteReviewComponent implements OnInit {
         .pipe(tap((book) => (this.currentBook = book)));
     }
     this.reviewService.getReviewOfUser(bookId).subscribe((review) => {
-      console.log(review);
-    });
-    this.reviewService.getReviewsOfBook(bookId).subscribe((reviews) => {
-      console.log(reviews);
+      if (review) {
+        this.reviewForm.get('rating')?.setValue(review.rating);
+        this.rating = review.rating;
+        this.reviewForm.get('comment')?.setValue(review.review);
+      }
     });
   }
 
   setRating(rating: number): void {
+    this.rating = rating;
     this.reviewForm.get('rating')?.setValue(rating);
   }
 

@@ -1,0 +1,54 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1.5em;
+}
+
+.books {
+  background-color: var(--background-color1);
+  border: 1px solid black;
+  border-radius: 2em;
+  padding: 2em;
+  display: flex;
+  gap: 3em;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  max-height: 70vh;
+}
+
+.book {
+  width: 250px;
+  height: 300px;
+  display: grid;
+  grid-template-rows: 70% auto 1fr;
+  text-align: center;
+}
+
+.books a {
+  text-decoration: none;
+  color: unset;
+  transition: ease-in 0.15s color;
+  justify-self: center;
+}
+
+.books a:hover,
+.books a:hover + a {
+  color: rgb(128, 30, 255);
+}
+
+.book h3 {
+  margin: 0.5em 0 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.book p {
+  margin: 0.4em 0 0;
+  padding: 0;
+}
+
+.book img {
+  height: 100%;
+  border-radius: 4px;
+}

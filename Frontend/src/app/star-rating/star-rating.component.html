@@ -1,9 +1,17 @@
-@for (star of getStars(); track $index) {
+@for (star of getStars(); track $index) { @if (clickable) {
+<button (click)="starClicked($index)" type="button">
   @if (star === 'full') {
-    <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
   } @else if (star === 'half') {
-    <i class="fas fa-star-half-alt"></i>
+  <i class="fas fa-star-half-alt"></i>
   } @else {
-    <i class="far fa-star"></i>
+  <i class="far fa-star"></i>
   }
-}
+</button>
+} @else { @if (star === 'full') {
+<i class="fas fa-star"></i>
+} @else if (star === 'half') {
+<i class="fas fa-star-half-alt"></i>
+} @else {
+<i class="far fa-star"></i>
+} } }

@@ -1,158 +1,71 @@
-h1 {
+:host {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 70px;
+  padding: 1em 1.5em;
 }
 
-h2 {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  padding: 10px;
-  white-space:normal;
-}
-
-button {
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-#topic-search {
+.books {
+  background-color: var(--background-color1);
+  border: 1px solid black;
+  border-radius: 2em;
+  padding: 2em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10%;
-  cursor: pointer;
-}
-
-#search-field {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#book-entries {
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
-  /*margin-bottom:5%;*/
-  width: 90%;
-  display: flex;
-  flex-direction: row;
+  gap: 3em;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  overflow: hidden;
-  align-items: stretch;
-  gap: 40px;
-  flex-wrap: wrap;
-  padding: 20px;
-  border-radius: 8px;
-} 
-
-#book-entries > div {
-  width: 75%;
-  max-width: 200px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  max-height: 35vh;
 }
 
-#book-entries  h2 {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+.book {
+  width: 250px;
+  height: 300px;
+  display: grid;
+  grid-template-rows: 70% auto 1fr;
+  text-align: center;
 }
 
-.bookBox {
-  width:100%;
-  max-width: 100%; 
-  min-width: 250px; 
-  flex: 1 1 40%; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-  box-sizing: border-box; 
-  overflow: hidden;
-} 
-
-
-.content-description {
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: break-word;
+.books a {
+  text-decoration: none;
+  color: unset;
+  transition: ease-in 0.15s color;
+  justify-self: center;
 }
 
-.item {
-  display: flex;
-  flex-direction: column;
-  max-width: 80%;
-  overflow: hidden;
+.books a:hover,
+.books a:hover + a {
+  color: rgb(128, 30, 255);
 }
 
-#goBack_getBooksButton {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 5%;
+.book h3 {
+  margin: 0.5em 0 0;
+  padding: 0;
+  font-weight: bold;
 }
 
-#goBackButton {
-  margin-bottom: 7px;
+.book p {
+  margin: 0.4em 0 0;
+  padding: 0;
 }
 
-/*Spinner mit ChatGPT */
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
-  background-color: white;
-  margin: 20px 0;
-}
-
-.spinner-image {
-  width: 200px;
-  height: auto;
-}
-
-.toRead {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px;
-  font-size: 12px;
-  border: 1px solid lightgray;
+.book img {
+  height: 100%;
   border-radius: 4px;
-  transition: background-color 0.3s;
 }
 
-.toRead:hover {
-  background-color: rgba(172, 196, 230, 0.71);
-}
-
-.overlay {
-  position: fixed;
-  top: 35%;
-  left: 35%;
+.randomBooksHeading {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: rgba(176, 196, 222, 0.547);
-  z-index: 100000;
-  border-radius: 10px;
-  margin: 1%;
+  gap: 0.2em;
 }
 
-.popup {
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid rgb(239, 38, 145);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.randomBooksHeading button {
+  background: none;
+  border: none;
+  font-size: 1.4em;
 }
 
-#currentlyReadingBooks {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom:7%;
+.randomBooksHeading button:hover:enabled,
+.randomBooksHeading h1.enabled {
+  cursor: pointer;
 }

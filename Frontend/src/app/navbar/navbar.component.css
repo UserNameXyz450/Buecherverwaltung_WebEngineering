@@ -6,19 +6,19 @@
 }
 
 .navbar {
-  width: 100%;
   box-sizing: border-box;
-  margin-top: 0;
-  padding-left: 20px;
-  padding-right: 20px;
+  width: 100%;
   height: 60px;
+  margin: 0;
+  padding: 0 1em;
+
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+
   background-color: lightsteelblue;
   text-decoration: none;
+  list-style-type: none;
 }
-
 
 .navbar a {
   display: flex;
@@ -29,13 +29,12 @@
   background-color: lightsteelblue;
   height: 100%;
   padding: 0px 10px;
-  transition: background-color 0.3s;
+  transition: text-shadow 0.3s;
   font-weight: bold;
-
 }
 
 .navbar a:hover {
-  background-color: rgba(141, 161, 221, 0.56);
+  text-shadow: 0 0 10px rgb(129, 129, 129);
 }
 
 .navbar li {
@@ -53,16 +52,6 @@
   margin-right: 5px;
   min-width: 250px;
   position: relative;
-}
-
-ul.navbar {
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  align-items: stretch;
 }
 
 #registerlogin {
@@ -94,7 +83,7 @@ ul.navbar {
   right: 0;
   background-color: white;
   min-width: 140px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0,2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0, 2);
   z-index: 1;
   border-radius: 4px;
   overflow: hidden;
@@ -139,9 +128,9 @@ ul.navbar {
 }
 
 #home-button::before {
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f015';
+  content: "\f015";
   position: absolute;
   left: 8px;
   text-indent: 0;
@@ -151,7 +140,7 @@ ul.navbar {
 
 .navbar-divider {
   display: flex;
-  flex-grow: 1
+  flex-grow: 1;
 }
 
 .navbar-divider.left {
@@ -167,7 +156,7 @@ ul.navbar {
 }
 
 #search-combo {
-  position: relative; 
+  position: relative;
 }
 
 #search-button {
@@ -189,9 +178,9 @@ ul.navbar {
 }
 
 #search-button::before {
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f002';
+  content: "\f002";
   position: absolute;
   text-indent: 0;
   font-size: 18px;
@@ -208,9 +197,9 @@ ul.navbar {
 }
 
 #my-library-button::before {
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f02d';
+  content: "\f02d";
   position: absolute;
   left: 8px;
   text-indent: 0;

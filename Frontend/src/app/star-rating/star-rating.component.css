@@ -1,10 +1,28 @@
+:host {
+  display: flex;
+  gap: 3px;
+}
+
+:host * {
+  font-size: inherit;
+}
+
 .fa-star,
 .fa-star-half-alt {
   color: gold;
-  margin-right: 2px;
 }
 
 .far.fa-star {
   color: lightgray;
-  margin-right: 2px;
+}
+
+button {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  cursor: pointer;
 }

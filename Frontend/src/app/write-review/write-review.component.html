@@ -1,30 +1,32 @@
 <div class="review" *ngIf="book$ | async as book">
   <h2>Write a review for</h2>
-  <h3>{{ book.volumeInfo.title }}</h3>
-  <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="cover" />
 
-  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-    <label>Rating*:</label>
-    <div class="stars">
-      <button
-        type="button"
-        *ngFor="let star of [1, 2, 3, 4, 5]"
-        (click)="setRating(star)"
-        [class.rated]="star <= (reviewForm.get('rating')?.value || 0)"
-      >
-        &#9733;
+  <div class="formWrapper">
+    <h3>{{ book.volumeInfo.title }}</h3>
+    <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="cover" />
+
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+      <div class="rating">
+        <label>Rating*:</label>
+        <div class="stars">
+          <app-star-rating
+            (ratingChange)="setRating($event)"
+            [rating]="rating"
+            [clickable]="true"
+          ></app-star-rating>
+        </div>
+      </div>
+
+      <div class="comment">
+        <label for="comment">Review (optional)</label>
+        <textarea id="comment" formControlName="comment" rows="6"></textarea>
+      </div>
+
+      <button type="submit" [disabled]="reviewForm.invalid">
+        Submit Review
       </button>
-    </div>
+    </form>
+  </div>
 
-    <div class="comment">
-      <label for="comment">Review (optional)</label>
-      <textarea id="comment" formControlName="comment" rows="6"></textarea>
-    </div>
-
-    <button type="submit" [disabled]="reviewForm.invalid">Submit Review</button>
-
-  </form>
-
-  
   <p *ngIf="message">{{ message }}</p>
 </div>

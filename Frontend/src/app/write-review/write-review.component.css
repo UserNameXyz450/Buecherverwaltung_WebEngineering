@@ -1,3 +1,77 @@
 :host {
-    padding: 2em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px;
+  max-width: 1500px;
+  width: min(90%, 600px);
+  min-height: 30vh;
+  box-shadow: 0 4px 8px lightsteelblue;
+  border-radius: 50px;
+  background-color: var(--background-color1);
+}
+
+form {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.rating {
+  display: flex;
+  gap: 0.5em;
+  font-size: 1.2em;
+  background-color: white;
+  border-radius: 0.7em;
+  padding: 0.5em;
+  border: 1px solid var(--background-color3);
+}
+
+app-star-rating {
+  font-size: 1.2em;
+}
+
+.comment textarea {
+  width: 50vw;
+  height: 20em;
+  border-radius: 1em;
+  padding: 0.5em;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.comment label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+form button[type="submit"] {
+  align-self: center;
+  padding: 0.5em 2em;
+  border: 1px solid var(--background-color1);
+  border-radius: 1em;
+  transition: background-color 0.3s;
+  font-size: 1.1rem;
+  background-color: var(--background-color2);
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover:enabled {
+  background-color: white;
 }
